@@ -53,4 +53,33 @@ class UserModel extends CI_Model
             $count++;
         }
     }
+
+    public function showRulesTable()
+    {
+        $data = $this->db->get('rules');
+        $arr = [];
+        if ($data->num_rows() > 0) {
+            return $data->result();
+        }
+    }
+
+    public function deleteRule($id)
+    {
+        $this->db->where(["Id" => $id]);
+        $this->db->delete('rules');
+    }
+    public function editRules($id)
+    {
+        $this->db->where(['Id' => $id]);
+        $data = $this->db->get('rules');
+        return $data->result();
+    }
+    public function updateRules($id, $numberOfUser, $points)
+    {
+        // $this->db->set( $numberOfUser , $points);
+        // var_dump($id);exit;
+        $Id = (int) $id;
+        $this->db->where("Id", $Id);
+        $this->db->update('rules', ["NumberOfPlayers" => $numberOfUser, "Points" => $points  ]);
+    }
 }

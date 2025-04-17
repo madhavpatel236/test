@@ -19,16 +19,24 @@
     <div>
         <input name="user_number0" id="user_number0" type="number" min="0" />
         <input name="points0" id="points0" type="number" min="0" />
+        <input id="edit_id" type="hidden" />
         <button id="plus_btn" name="plus_btn"> + </button>
     </div> <br>
+
     <div class="plus_data_div" id="plus_data_div" name="plus_data_div"></div>
 
-    <table>
+    <button id="add_btn" class="add_btn" name="add_btn"> Add </button>
+    <button style="display: none;" id="update_btn" class="update_btn" name="update_btn"> Update </button>
 
+    <table style="display: none;" border="2" id="rules_table">
+        <tr>
+            <th> count </th>
+            <th> No of Players </th>
+            <th> Points </th>
+            <!-- <th> </th> -->
+        </tr>
+        <tbody id="conctent_row"></tbody>
     </table>
-    <form id="add_btn_form" method="post">
-        <button id="add_btn" class="add_btn" name="add_btn"> Add </button>
-    </form>
 </body>
 
 <script>
@@ -37,7 +45,7 @@
     var pointsArray = [];
 
     $(document).ready(function() {
-
+        showRulesTable();
         $('#plus_btn').click(function() {
             count += 1;
             if (count >= 1) {
@@ -53,8 +61,8 @@
             };
         })
 
-        $('.add_btn').click(function(e) {
-            e.preventDefault();
+        $('.add_btn').click(function() {
+            // e.preventDefault();
             for (let i = 0; i <= count; i++) {
                 var numberOfUser = $(`#user_number${i}`).val();
                 var points = $(`#points${i}`).val();
@@ -71,11 +79,100 @@
                     points: pointsArray
                 },
                 success: function(response) {
-                    alert(response);
+                    // alert(response);
+                    showRulesTable();
                 },
             });
         })
+
+        $("#update_btn").click(function() {
+
+            var userNumbers = $('#user_number0').val();
+            var points = $('#points0').val();
+            var id = $('#edit_id').val();
+
+            $.ajax({
+                url: '<?php print site_url('AdminController/updateRule') ?>',
+                type: "post",
+                data: {
+                    UserNumbers: userNumbers,
+                    Points: points,
+                    Id: id
+                },
+                success: function(res) {
+                    // alert(res); exit;
+                    $('#add_btn').show();
+                    $('#update_btn').hide();
+                }
+            })
+        })
     })
+
+    function showRulesTable() {
+        $.ajax({
+            url: "<?php print site_url('AdminController/showRulesTable');  ?>",
+            type: "GET",
+            data: {},
+            success: function(res) {
+                var data = JSON.parse(res);
+                var value = '';
+                var count = 0;
+                // console.log(data);
+                // exit;
+                if (data != null) {
+                    $("#rules_table").show();
+                    for (let i = 0; i <= data.length - 1; i++) {
+                        count++;
+                        value += "<tr class='" + data[i]['Id'] + "'>";
+                        value += "<td>" + count + "</td>";
+                        value += "<td>" + data[i]['NumberOfPlayers'] + "</td>";
+                        value += "<td>" + data[i]['Points'] + "</td>";
+                        // value += "<td>";
+                        value += "<td><button" + ' ' + 'class=' + 'edit_btn' + ' ' + 'onclick=' + 'editRule(' + data[i].Id + ')' + ' ' + data[i].Id + "> Edit </button> <button" + ' ' + 'class=' + 'delete_btn' + ' ' + 'onclick=' + 'deleteRule(' + data[i].Id + ')' + "> Delete </button> </td >";
+                        // value += "</td>";
+                        value += "</tr>";
+                        $("#conctent_row").html(value);
+                    }
+                }
+            }
+        })
+    }
+
+    function deleteRule(id) {
+        $.ajax({
+            url: '<?php print site_url('AdminController/deleteRule') ?>',
+            type: "POST",
+            data: {
+                Id: id
+            },
+            success: function(response) {
+                // alert(response);
+                showRulesTable();
+                $(`.${id}`).remove();
+            }
+        })
+    }
+
+    function editRule(id) {
+        $.ajax({
+            url: '<?php print site_url('AdminController/editRule') ?>',
+            type: 'POST',
+            data: {
+                Id: id
+            },
+            success: function(response) {
+                var user = JSON.parse(response);
+                // alert(user[0]);exit;
+                $('#user_number0').val(user[0].NumberOfPlayers);
+                $('#points0').val(user[0].Points);
+                $('#edit_id').val(user[0].Id);
+                $('#update_btn').show();
+                $('.add_btn').hide();
+                $('#plus_btn').hide();
+
+            }
+        })
+    }
 </script>
 
 </html>

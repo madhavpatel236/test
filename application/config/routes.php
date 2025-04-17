@@ -8,3 +8,6 @@ $route['AuthController/AdminHome'] = 'AuthController/AdminHome';
 $route['AuthController/UserHome'] = 'AuthController/UserHome';
 $route['UserController/view'] = 'UserController/view';
 $route['AdminController/addRules'] = 'AdminController/addRules';
+$route['AdminController/showRulesTable'] = 'AdminController/showRulesTable';
+$route['AdminController/editRule'] = 'AdminController/editRule';
+$route['AdminController/updateRule'] = 'AdminController/updateRule';
