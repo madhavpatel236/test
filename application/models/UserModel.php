@@ -40,8 +40,17 @@ class UserModel extends CI_Model
         // var_dump($passwordHash); exit;
         $isInsert = $this->db->insert('auth', ['Name' => $name, 'Email' => $email, 'Password' => $passwordHash, "Role" => $role]);
         // $this->db->
-        if($isInsert){
+        if ($isInsert) {
             redirect('AuthController/userView');
+        }
+    }
+
+    public function addRules($numberOfUser, $points)
+    {
+        $count = 0;
+        foreach ($numberOfUser as $userNumber) {
+            $this->db->insert('rules', ["NumberOfPlayers" => $userNumber, "Points" => $points[$count]]);
+            $count++;
         }
     }
 }
