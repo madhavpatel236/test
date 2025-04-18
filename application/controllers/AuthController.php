@@ -80,21 +80,19 @@ class AuthController extends CI_Controller
         $this->load->view('UserHome');
     }
 
-    // public function reloadPageChack()
-    // {
-    //     $userEmail = $_SESSION['currentUserEmailID'];
-    //     $userRole = $_SESSION['userRole'];
-    //     // var_dump($userRole);
+    public function reloadPageChack()
+    {
+        var_dump('hii'); exit;
+        $userEmail = $_SESSION['currentUserEmailID'];
+        $userRole = $_SESSION['userRole'];
+        // var_dump($userRole);
 
-    //     if ($userEmail != null && $userRole != null  && $userRole = 'user') {
-    //         var_dump($userRole);
-    //         site_url('UserController/userHome');
-    //     } elseif ($userEmail != null && $userRole != null  &&  $userRole = 'admin') {
-    //         var_dump($userRole);
-    //         site_url('AuthController/adminView');
-    //     } else {
-    //         // var_dump($userRole);     
-    //         site_url('AuthController/view');
-    //     }
-    // }
+        if ($userEmail &&  $userRole == 'admin') {
+            site_url('AuthController/adminView');
+        } elseif ($userEmail &&  $userRole == 'user') {
+            site_url('UserController/userHome');
+        } else {
+            site_url('AuthController/view');
+        }
+    }
 }

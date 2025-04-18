@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 session_start();
-// $_SESSION['currentUserEmailID'];
+// $_SESSION['currentUserEmailID'] = null;
 class UserModel extends CI_Model
 {
     public $lastRankInDB = null;
@@ -57,8 +57,8 @@ class UserModel extends CI_Model
         $this->db->where(["Email" => $email]);
         $alreadyUser = $this->db->get('auth');
         // var_dump($alreadyUser->num_rows()); exit;
-        if($alreadyUser->num_rows() > 0){
-            $_SESSION['userEmailAlreadyPresent'] = false ;
+        if ($alreadyUser->num_rows() > 0) {
+            $_SESSION['userEmailAlreadyPresent'] = false;
             return false;
         }
 

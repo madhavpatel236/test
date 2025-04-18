@@ -11,12 +11,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |	https://codeigniter.com/userguide3/general/hooks.html
 |
 */
-// $hook['pre_system'] = array(
-//     'class'    => 'AuthController',
-//     'function' => 'reloadPageChack',
-//     'filename' => 'AuthController.php',
-//     'filepath' => 'hooks',
-//     // 'params'   => array('beer', 'wine', 'snacks')
-// );
+
+$hook['pre_system'] = array(
+    'class'    => 'AuthController',
+    'function' => 'reloadPageChack',
+    'filename' => 'AuthController.php',
+    'filepath' => '../controllers/AuthController.php',
+);
 
 //../controllers/AuthController.php
