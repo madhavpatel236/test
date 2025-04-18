@@ -4,8 +4,7 @@ $userEmail = $_SESSION['currentUserEmailID'];
 $userRole = $_SESSION['userRole'];
 if ($userEmail != null &&  $userRole = 'user') {
     site_url('UserController/userHome');
-}
- elseif ($userEmail !=null &&  $userRole = 'admin') {
+} elseif ($userEmail != null &&  $userRole = 'admin') {
     site_url('AuthController/adminView');
 } else {
     site_url('AuthController/view');
@@ -28,11 +27,11 @@ if ($userEmail != null &&  $userRole = 'user') {
 
 <body>
     <div>
-        <form method="post"  action="<?php print site_url('AuthController/view'); ?>">
+        <form method="post" action="<?php print site_url('AuthController/view'); ?>">
             <button type="submit" class="logout_btn" name="logout_btn"> Logout </button>
         </form>
         <h3 id="complete_message" style="display: none;"> Quiz was completed by you. </h3>
-        <form id="quizeForm" class="quizeForm" method="post" action="<?php print site_url('UserController/insertUserData') ?>">
+        <form style="display: none;" id="quizeForm" class="quizeForm" method="post" action="<?php print site_url('UserController/insertUserData') ?>">
             <h2> Questions </h2>
             <div id="question_error"> </div>
             <div>
@@ -78,8 +77,64 @@ if ($userEmail != null &&  $userRole = 'user') {
 </body>
 
 <script>
+    $(document).ready(function() {
+        let isValidate;
+
+        function onlyNnumbers() {
+            var answer3 = $("#question3").val().trim();
+            console.log(answer3 < 0);
+            if (answer3 < 0) {
+                $("#answer3_error").text("Only positive numbers are allowed.");
+                // $("#question3").val("");
+            }
+        }
+
+        function answerValidation() {
+            var answer1 = $("#question1").val().trim();
+            var answer2 = $("#question2").val().trim();
+            var answer3 = $("#question3").val().trim();
+            var answer4 = $("#question4").val().trim();
+            var answer5 = $("#question5").val().trim();
+            if (
+                answer1 == "" ||
+                answer2 == "" ||
+                answer3 == "" ||
+                answer4 == "" ||
+                answer5 == ""
+            ) {
+                $("#question_error").text("*All the answers is require for this Quize.");
+                return false;
+            } else {
+                $("#question_error").text("");
+                return true;
+            }
+        }
+
+        $("#question1").on("input", answerValidation);
+        $("#question2").on("input", answerValidation);
+        $("#question3").on("input", answerValidation);
+        $("#question3").on("input", onlyNnumbers);
+        $("#question4").on("input", answerValidation);
+        $("#question5").on("input", answerValidation);
+
+        $("#quizeForm").submit(function(e) {
+            isValidate = answerValidation();
+            if (!isValidate) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+
+
+<script>
     showRankTable();
     TestStatus();
+    $(document).ready(function() {
+        $('.user_submit_btn').on('click', function() {
+            TestStatus();
+        })
+    })
 
     function showRankTable() {
         $.ajax({
@@ -114,10 +169,11 @@ if ($userEmail != null &&  $userRole = 'user') {
             type: "GET",
             success: function(res) {
                 // alert(res);
-                if (res) {
-                    $("#quizeForm").hide();
+                if (res == 'false') {
+                    $('#quizeForm').hide();
                     $('#complete_message').show();
-                } else {
+                } 
+                else {
                     $("#quizeForm").show();
                     $('#complete_message').hide();
                 }

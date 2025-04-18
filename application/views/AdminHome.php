@@ -5,16 +5,15 @@ $userRole = $_SESSION['userRole'];
 // var_dump($userRole);
 
 if ($userEmail != null && $userRole != null  && $userRole = 'user') {
-    var_dump($userRole);
+    // var_dump($userRole);
     site_url('UserController/userHome');
 } elseif ($userEmail != null && $userRole != null  &&  $userRole = 'admin') {
     var_dump($userRole);
     site_url('AuthController/adminView');
 } else {
-    // var_dump($userRole);
+    // var_dump($userRole);     
     site_url('AuthController/view');
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +24,6 @@ if ($userEmail != null && $userRole != null  && $userRole = 'user') {
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
 </head>
 
 <body>
@@ -124,6 +122,7 @@ if ($userEmail != null && $userRole != null  && $userRole = 'user') {
                     // alert(res); exit;
                     $('#add_btn').show();
                     $('#update_btn').hide();
+                    showRulesTable();
                 }
             })
         })

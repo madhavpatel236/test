@@ -32,6 +32,9 @@ class UserModel extends CI_Model
             $_SESSION['userRole'] = "admin";
             // var_dump( $_SESSION['currentUserEmailID']); exit;
             redirect('AuthController/adminView');
+        } else {
+            $_SESSION['currentUserEmailID'] = null;
+            $_SESSION['userRole'] = null;
         }
 
         if ($data->num_rows() > 0 && $email == $userEmailDB && $varifyPassword  && $userRoleDB == 'user') {
@@ -40,11 +43,16 @@ class UserModel extends CI_Model
             $_SESSION['currentUserEmailID'] = $email;
             $_SESSION['userRole'] = "user";
             redirect('AuthController/userView');
+        } else {
+            $_SESSION['currentUserEmailID'] = null;
+            $_SESSION['userRole'] = null;
         }
     }
 
     public function registerUser($name, $email, $password, $role)
     {
+        // var_dump($email); exit;
+
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         // var_dump($passwordHash); exit;
         $isInsert = $this->db->insert('auth', ['Name' => $name, 'Email' => $email, 'Password' => $passwordHash, "Role" => $role]);
@@ -53,6 +61,9 @@ class UserModel extends CI_Model
             $_SESSION['currentUserEmailID'] = $email;
             $_SESSION['userRole'] = "user";
             redirect('AuthController/userView');
+        } else {
+            $_SESSION['currentUserEmailID'] = null;
+            $_SESSION['userRole'] = null;
         }
     }
 
@@ -171,7 +182,9 @@ class UserModel extends CI_Model
         $query = $this->db->get();
         $check = $query->result();
         if (count($check) != 0) {
-            return;
+            // return false;
+            // redirect('UserController/userHome');
+
         }
         $ranking = $this->lastRankInDB + 1;
         $newUserData = [
@@ -204,7 +217,7 @@ class UserModel extends CI_Model
 
         $rankOfCurrentUser =  $query->result()[0]->Ranking;
         $prev = (int) $rulesDataArray[0]['numberOfPlayers'];
-        $userPoint = null;
+        $userPoint = 0;
         for ($i = 0; $i < count($rulesDataArray); $i++) {
             $countRules = '';
             $prev += (int) $rulesDataArray[$i + 1]['numberOfPlayers'];
@@ -231,15 +244,16 @@ class UserModel extends CI_Model
 
     public function userTestStatus()
     {
+        // var_dump("dvfdv"); exit;
         $this->db->select("Email");
         $this->db->from('userData');
         $this->db->where(["Email" => $this->userEmail]);
         $isUserComplete = $this->db->get();
-        // var_dump($isUserComplete->num_rows());
+        // var_dump($isUserComplete->num_rows()); exit;
         if ($isUserComplete->num_rows() > 0) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 }

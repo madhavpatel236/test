@@ -9,6 +9,7 @@ $route['AuthController/AdminHome'] = 'AuthController/AdminHome';
 $route['AuthController/view'] = 'AuthController/view';
 $route['AuthController/UserHome'] = 'AuthController/UserHome';
 $route['AuthController/userView'] = 'AuthController/userView';
+$route['AuthController/register'] = 'AuthController/register';
 
 $route['AdminController/addRules'] = 'AdminController/addRules';
 $route['AdminController/showRulesTable'] = 'AdminController/showRulesTable';
