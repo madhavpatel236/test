@@ -2,14 +2,17 @@
 
 $userEmail = $_SESSION['currentUserEmailID'];
 $userRole = $_SESSION['userRole'];
-if ($userEmail != null &&  $userRole = 'user') {
-    site_url('UserController/userHome');
-} elseif ($userEmail != null &&  $userRole = 'admin') {
+// var_dump($userEmail);
+// var_dump($userRole);
+// exit;    
+if ($userEmail &&  $userRole == 'admin') {
     site_url('AuthController/adminView');
+} elseif ($userEmail &&  $userRole == 'user') {
+    // var_dump('dsfv');exit;
+    site_url('AuthController/UserHome');
 } else {
-    site_url('AuthController/view');
+    redirect('AuthController/view');
 }
-
 
 ?>
 
@@ -172,8 +175,7 @@ if ($userEmail != null &&  $userRole = 'user') {
                 if (res == 'false') {
                     $('#quizeForm').hide();
                     $('#complete_message').show();
-                } 
-                else {
+                } else {
                     $("#quizeForm").show();
                     $('#complete_message').hide();
                 }

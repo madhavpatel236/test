@@ -53,6 +53,16 @@ class UserModel extends CI_Model
     {
         // var_dump($email); exit;
 
+        $this->db->select('Email');
+        $this->db->where(["Email" => $email]);
+        $alreadyUser = $this->db->get('auth');
+        // var_dump($alreadyUser->num_rows()); exit;
+        if($alreadyUser->num_rows() > 0){
+            $_SESSION['userEmailAlreadyPresent'] = false ;
+            return false;
+        }
+
+
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         // var_dump($passwordHash); exit;
         $isInsert = $this->db->insert('auth', ['Name' => $name, 'Email' => $email, 'Password' => $passwordHash, "Role" => $role]);

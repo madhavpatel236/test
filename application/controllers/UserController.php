@@ -55,10 +55,11 @@ class UserController extends CI_Controller
             $this->errors['password_error'] = "password is reqired";
             $this->isValid = false;
         }
-        // if ($_SESSION['isUserPresentAlready'] == true) {
-        //     $this->errors['general_error'] = "User already present, please use different email address.";
-        //     $this->isValid = false;
-        // }
+        
+        if ($_SESSION['userEmailAlreadyPresent'] == false) {
+            $this->errors['general_error'] = "User already present, please use different email address.";
+            $this->isValid = false;
+        }
         if ($this->isValid == false) {
             // $this->load->view('Register', $this->errors);
             redirect('AuthController/register');

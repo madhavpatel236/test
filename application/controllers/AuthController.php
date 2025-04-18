@@ -1,8 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 session_start();
-$_SESSION['currentUserEmailID'];
-$_SESSION['userRole'];
+// $_SESSION['currentUserEmailID'];
+// $_SESSION['userRole'] ;
+$_SESSION['userEmailAlreadyPresent'] = true;
+
 class AuthController extends CI_Controller
 {
     public $userModelObj;
@@ -19,20 +21,24 @@ class AuthController extends CI_Controller
         $this->load->database('default');
         $this->load->helper('url');
 
-        $this->email = $_POST['login_email'];
-        $this->password = $_POST['login_password'];
+        // $this->email = $_POST['login_email'];
+        // $this->password = $_POST['login_password'];
 
         // if ($this->email == null) {
         //     $this->errors['email_error'] = "Please enter the email address.";
         // }
-
-
     }
 
     public function view()
     {
         $this->load->view('Login');
     }
+
+    public function userHome()
+    {
+        $this->load->view('UserHome');
+    }
+
     public function register()
     {
         $this->load->view('Register');
