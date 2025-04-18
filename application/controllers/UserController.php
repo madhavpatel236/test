@@ -27,6 +27,10 @@ class UserController extends CI_Controller
         $this->load->view('Register');
     }
 
+    public function userHome(){
+        $this->load->view('UserHome');
+    }
+
     public function register()
     {
         $this->name = $this->input->post('register_name');
@@ -48,5 +52,10 @@ class UserController extends CI_Controller
     public function insertUserData()
     {
         $this->UserModel->InsertData();
+    }
+
+    public function isUserCompleteTest(){
+        $data = $this->UserModel->userTestStatus();
+        echo json_encode($data);
     }
 }

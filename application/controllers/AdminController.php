@@ -14,6 +14,7 @@ class AdminController extends CI_Controller
         $this->load->helper('url');
         $this->load->model('UserModel');
     }
+    
     public function addRules()
     {
         $numberOfUser = $this->input->post('numberOfUser');

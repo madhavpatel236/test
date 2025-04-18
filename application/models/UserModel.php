@@ -5,9 +5,12 @@ session_start();
 class UserModel extends CI_Model
 {
     public $lastRankInDB = null;
+    public $userEmail = "";
+
     public function __construct()
     {
         parent::__construct();
+        $this->userEmail =  $_SESSION['currentUserEmailID'];
         // $this->load->database('default', TRUE);
     }
 
@@ -26,6 +29,7 @@ class UserModel extends CI_Model
             // var_dump($userRoleDB);
             // $this->load->view('/AdminHome');
             $_SESSION['currentUserEmailID'] = $email;
+            $_SESSION['userRole'] = "admin";
             // var_dump( $_SESSION['currentUserEmailID']); exit;
             redirect('AuthController/adminView');
         }
@@ -34,6 +38,7 @@ class UserModel extends CI_Model
             // var_dump($userRoleDB);
             // $this->load->view('/AdminHome');
             $_SESSION['currentUserEmailID'] = $email;
+            $_SESSION['userRole'] = "user";
             redirect('AuthController/userView');
         }
     }
@@ -46,6 +51,7 @@ class UserModel extends CI_Model
         // $this->db->
         if ($isInsert) {
             $_SESSION['currentUserEmailID'] = $email;
+            $_SESSION['userRole'] = "user";
             redirect('AuthController/userView');
         }
     }
@@ -169,11 +175,11 @@ class UserModel extends CI_Model
         }
         $ranking = $this->lastRankInDB + 1;
         $newUserData = [
-                'Ranking' => $ranking,
-                'Email'   => $curentUserEmail,
-                'userID'  => $userId
-            ];
-            $this->db->insert('userData', $newUserData);
+            'Ranking' => $ranking,
+            'Email'   => $curentUserEmail,
+            'userID'  => $userId
+        ];
+        $this->db->insert('userData', $newUserData);
 
         // points 
         $rulesDataArray = [];
@@ -189,14 +195,13 @@ class UserModel extends CI_Model
             }
         }
 
-
         // select a current user rank from the database 
         $this->db->select('Ranking');
         $this->db->from('userData');
         $this->db->where('Email', $curentUserEmail);
         $query = $this->db->get();
 
-        
+
         $rankOfCurrentUser =  $query->result()[0]->Ranking;
         $prev = (int) $rulesDataArray[0]['numberOfPlayers'];
         $userPoint = null;
@@ -218,6 +223,23 @@ class UserModel extends CI_Model
 
         $this->db->set(["Points" => $userPoint]);
         $this->db->where("Email", $curentUserEmail);
-        $this->db->update('userData');
+        $isUpdate = $this->db->update('userData');
+        if ($isUpdate) {
+            redirect('UserController/userHome');
+        }
+    }
+
+    public function userTestStatus()
+    {
+        $this->db->select("Email");
+        $this->db->from('userData');
+        $this->db->where(["Email" => $this->userEmail]);
+        $isUserComplete = $this->db->get();
+        // var_dump($isUserComplete->num_rows());
+        if ($isUserComplete->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -1,3 +1,18 @@
+<?php
+
+$userEmail = $_SESSION['currentUserEmailID'];
+$userRole = $_SESSION['userRole'];
+if ($userEmail != null &&  $userRole = 'user') {
+    site_url('UserController/userHome');
+}
+ elseif ($userEmail !=null &&  $userRole = 'admin') {
+    site_url('AuthController/adminView');
+} else {
+    site_url('AuthController/view');
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,11 +28,11 @@
 
 <body>
     <div>
-        <!-- <form method="post">
+        <form method="post"  action="<?php print site_url('AuthController/view'); ?>">
             <button type="submit" class="logout_btn" name="logout_btn"> Logout </button>
-        </form> -->
+        </form>
         <h3 id="complete_message" style="display: none;"> Quiz was completed by you. </h3>
-        <form id="quizeForm" method="post" action="<?php print site_url('UserController/insertUserData') ?>" >
+        <form id="quizeForm" class="quizeForm" method="post" action="<?php print site_url('UserController/insertUserData') ?>">
             <h2> Questions </h2>
             <div id="question_error"> </div>
             <div>
@@ -64,6 +79,7 @@
 
 <script>
     showRankTable();
+    TestStatus();
 
     function showRankTable() {
         $.ajax({
@@ -87,6 +103,23 @@
                     }
                 } else {
                     $('#rankTable').hide();
+                }
+            }
+        })
+    }
+
+    function TestStatus() {
+        $.ajax({
+            url: "<?php print site_url('UserController/isUserCompleteTest') ?>",
+            type: "GET",
+            success: function(res) {
+                // alert(res);
+                if (res) {
+                    $("#quizeForm").hide();
+                    $('#complete_message').show();
+                } else {
+                    $("#quizeForm").show();
+                    $('#complete_message').hide();
                 }
             }
         })

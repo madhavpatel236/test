@@ -1,3 +1,17 @@
+<?php
+
+$userEmail = $_SESSION['currentUserEmailID'];
+$userRole = $_SESSION['userRole'];
+if ($userEmail !=null &&  $userRole = 'user') {
+    site_url('UserController/userHome');
+} elseif ($userEmail != null &&  $userRole = 'admin') {
+    site_url('AuthController/adminView');
+} else {
+    site_url('AuthController/view');
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

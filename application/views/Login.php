@@ -1,4 +1,17 @@
+<?php
 
+$userEmail = $_SESSION['currentUserEmailID'];
+$userRole = $_SESSION['userRole'];
+if ($userEmail != null &&  $userRole = 'user') {
+    site_url('UserController/userHome');
+} elseif ($userEmail !=null &&  $userRole = 'admin') {
+    site_url('AuthController/adminView');
+} else {
+    site_url('AuthController/view');
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +24,7 @@
 <body>
     <form method="post" action="<?php echo site_url('AuthController/auth'); ?>">
         <span for="login_email"> Email </span>
-        <input type="email"  class="login_email" id="login_email" name="login_email" />
+        <input type="email" class="login_email" id="login_email" name="login_email" />
         <span name="email_error" id="email_error"></span> <br /> <br />
 
         <span for="password_email"> password</span>
@@ -19,7 +32,7 @@
         <span name="password_error" id="password_error"></span> <br /> <br />
 
         <button class="submit_login"> Submit </button>
-        <a href="<?php print site_url('UserController/view'); ?>" > Register</a>
+        <a href="<?php print site_url('UserController/view'); ?>"> Register</a>
     </form>
 </body>
 

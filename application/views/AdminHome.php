@@ -1,3 +1,21 @@
+<?php
+
+$userEmail = $_SESSION['currentUserEmailID'];
+$userRole = $_SESSION['userRole'];
+// var_dump($userRole);
+
+if ($userEmail != null && $userRole != null  && $userRole = 'user') {
+    var_dump($userRole);
+    site_url('UserController/userHome');
+} elseif ($userEmail != null && $userRole != null  &&  $userRole = 'admin') {
+    var_dump($userRole);
+    site_url('AuthController/adminView');
+} else {
+    // var_dump($userRole);
+    site_url('AuthController/view');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +29,9 @@
 </head>
 
 <body>
+    <form method="post" action="<?php print site_url('AuthController/view'); ?>">
+        <button type="submit" class="logout_btn" name="logout_btn"> Logout </button>
+    </form>
     <div>
         <span style="margin-right: 100px;">Users Number </span>
         <span>Points </span>
