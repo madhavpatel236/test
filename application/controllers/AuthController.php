@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+session_start();
+$_SESSION['currentUserEmailID'] ;
 class AuthController extends CI_Controller
 {
     public $userModelObj;

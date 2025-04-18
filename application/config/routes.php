@@ -11,3 +11,7 @@ $route['AdminController/addRules'] = 'AdminController/addRules';
 $route['AdminController/showRulesTable'] = 'AdminController/showRulesTable';
 $route['AdminController/editRule'] = 'AdminController/editRule';
 $route['AdminController/updateRule'] = 'AdminController/updateRule';
+
+
+$route['UserController/showUserRankTable'] = 'UserController/showUserRankTable';
+$route['UserController/insertUserData'] = 'UserController/insertUserData';

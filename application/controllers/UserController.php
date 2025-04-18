@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * @property UserModel $UserModel
  * @property CI_Input $input
@@ -28,10 +29,6 @@ class UserController extends CI_Controller
 
     public function register()
     {
-        // $this->name = $_POST['register_name'];
-        // $this->email = $_POST['register_email'];
-        // $this->password = $_POST['register_password'];
-        // $this->role = $_POST['user_role'];
         $this->name = $this->input->post('register_name');
         $this->email = $this->input->post('register_email');
         $this->password = $this->input->post('register_password');
@@ -39,5 +36,17 @@ class UserController extends CI_Controller
         $this->UserModel->registerUser($this->name, $this->email, $this->password, $this->role);
     }
 
-    public function userHome() {}
+    public function showUserRankTable()
+    {
+        // var_dump("dcfv"); exit;
+        $data = $this->UserModel->userRankTable();
+        // print_r($data); exit;
+        //  $data;
+        echo json_encode($data);
+    }
+
+    public function insertUserData()
+    {
+        $this->UserModel->InsertData();
+    }
 }
