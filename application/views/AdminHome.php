@@ -2,9 +2,6 @@
 
 $userEmail = $_SESSION['currentUserEmailID'];
 $userRole = $_SESSION['userRole'];
-// var_dump($userEmail);
-// var_dump($userRole);
-// exit;    
 if ($userEmail &&  $userRole == 'admin') {
 
     site_url('AuthController/adminView');
@@ -30,23 +27,25 @@ if ($userEmail &&  $userRole == 'admin') {
     <link href="<?= base_url('assets/css/style.bundle.css') ?>" rel="stylesheet" />
     <script src="<?= base_url('assets/plugins/global/plugins.bundle.js') ?>"></script>
     <script src="<?= base_url('assets/js/scripts.bundle.js') ?>"></script>
-
-    <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
-
-    <!-- jQuery (already likely included) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
 </head>
 
 <body>
-
+    <?php $this->load->view('Navbar.php') ?>
+    <!-- 
     <form method="post" action="<?php print site_url('AuthController/view'); ?>">
-        <!-- <button type="submit" class="logout_btn" name="logout_btn"> Logout </button> -->
-    </form>
+        <button type="submit" class="logout_btn" name="logout_btn"> Logout </button>
+    </form> -->
+
+    <!-- 
+    <div href="#" class="btn  btn-flex btn-light btn-active-primary fw-bolder" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+        <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+        </span> Logout
+    </div> -->
+
     <!-- <div>
         <span style="margin-right: 100px;">Users Number </span>
         <span>Points </span>
@@ -65,13 +64,13 @@ if ($userEmail &&  $userRole == 'admin') {
     <!-- <button style="display: none;" id="update_btn" class="update_btn" name="update_btn"> Update </button> -->
 
 
-    <div class="card px-20 ">
+    <div class="card px-30 ">
         <div class="card-header">
-            <h3 class="card-title  ">Rules Table</h3>
+            <h3 class="card-title"> <strong> Rules Table</strong></h3>
         </div>
         <div class="card-body py-3">
             <div class="table-responsive">
-                <table class="table  table-row-dashed table-row-gray-300 align-middle gs-0 gy-4" id="rules_table">
+                <table class="table table-row-dashed table-row-gray-300 align-middle gs-0  gy-4" id="rules_table">
                     <thead>
                         <tr class="fw-bolder text-muted">
                             <th class="min-w-100px">#</th>
@@ -204,15 +203,8 @@ if ($userEmail &&  $userRole == 'admin') {
                 let value = '';
                 let count = 0;
 
-                if ($.fn.DataTable.isDataTable('#rules_table')) {
-                    $('#rules_table').DataTable().clear().destroy();
-                }
-                $('#rules_table').DataTable({
-                        responsive: true,
-                        paging: true,
-                        searching: true,
-                        ordering: true
-                    });
+
+
 
                 if (data && data.length > 0) {
                     $("#rules_table_card").show();
@@ -259,12 +251,19 @@ if ($userEmail &&  $userRole == 'admin') {
                     `;
                     });
 
-
+                    if ($.fn.DataTable.isDataTable('#rules_table')) {
+                        $('#rules_table').DataTable().clear().destroy();
+                    }
 
                     // Append new content
                     $("#content_row").html(value);
 
-                    
+                    $('#rules_table').DataTable({
+                        responsive: true,
+                        paging: true,
+                        searching: true,
+                        ordering: true
+                    });
 
                 } else {
                     $("#rules_table_card").hide();
