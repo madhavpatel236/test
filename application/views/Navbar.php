@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 
-<body class="bg-primary">
+<body class="bg-primary pt-2">
     <div id="kt_header" class="header align-items-stretch" data-kt-sticky="true" data-kt-sticky-name="header" data-kt-sticky-offset="{default: '200px', lg: '300px'}">
         <!--begin::Container-->
         <div class="container-xxl d-flex align-items-center">

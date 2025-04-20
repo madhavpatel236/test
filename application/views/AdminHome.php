@@ -21,7 +21,7 @@ if ($userEmail &&  $userRole == 'admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <link href="<?= base_url('assets/plugins/global/plugins.bundle.css') ?>" rel="stylesheet" />
     <link href="<?= base_url('assets/css/style.bundle.css') ?>" rel="stylesheet" />
@@ -48,7 +48,7 @@ if ($userEmail &&  $userRole == 'admin') {
     <!-- <button id="add_btn" class="add_btn" name="add_btn"> Add </button> -->
     <!-- <button style="display: none;" id="update_btn" class="update_btn" name="update_btn"> Update </button> -->
     <div class="card-px text-center pt-20 pb-5">
-        <a href="#" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">Add New Rules</a>
+        <a href="#" id="add_new_rule_btn" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">Add New Rules</a>
     </div>
     <div class="modal fade" id="kt_modal_new_address" tabindex="-1" aria-hidden="true">
 
@@ -139,7 +139,7 @@ if ($userEmail &&  $userRole == 'admin') {
         </div>
         <div class="card-body py-3 ">
             <div class="table-responsive ">
-                <table class="table table-row-dashed table-row-gray-300 align-middle gs-0  gy-6" id="rules_table">
+                <table style="display: none;" class="table table-row-dashed table-row-gray-300 align-middle gs-0  gy-6" id="rules_table">
                     <thead>
                         <tr class="fw-bolder text-muted">
                             <th class="min-w-100px">#</th>
@@ -180,19 +180,27 @@ if ($userEmail &&  $userRole == 'admin') {
 </body>
 
 <script>
+    showRulesTable()
     var count = 0;
     var numberOfUserArray = [];
     var pointsArray = [];
 
-    $(document).ready(function() {
+    // $(document).ready(function() {
 
-        showRulesTable(),
+        $('#add_new_rule_btn').click(function() {
+            $('#plus_btn').show();
+            $('.update_btn').hide();
+            $('.add_btn').show();
+            $('#user_number0').val("");
+            $('#points0').val("");
+            $('.plus_data_div').html("");
+        })
 
-            $('#plus_btn').click(function() {
-                count += 1;
-                if (count >= 1) {
+        $('#plus_btn').click(function() {
+            count += 1;
+            if (count >= 1) {
 
-                    var field = `
+                var field = `
                     <div class="row added_row_div   mt-5 new_added_div${count}" id='${count}'>
                         <div class="col-md-5 fv-row">
                             <input name="user_number0" id="user_number${count}" type="number" min="0" class="form-control form-control-solid" placeholder="Enter No. of players" />
@@ -204,9 +212,9 @@ if ($userEmail &&  $userRole == 'admin') {
                         <div class="col-md-2 fv-row">
                             <button onclick='removeFieldData(${count})'  class="remove_btn btn btn-primary" id = '${count}'> - </button>
                         </div> <br/> `;
-                    $('.plus_data_div').append(field)
-                };
-            })
+                $('.plus_data_div').append(field)
+            };
+        })
 
         $('.add_btn').click(function() {
             // e.preventDefault();
@@ -228,7 +236,7 @@ if ($userEmail &&  $userRole == 'admin') {
                 success: function(response) {
                     // alert(response);
                     // $('.model_box').hide();
-                    
+
                     showRulesTable();
                 },
             });
@@ -250,14 +258,14 @@ if ($userEmail &&  $userRole == 'admin') {
                 },
                 success: function(res) {
                     // alert(res); exit;
-                    $('#add_btn').show();
+                    $('.add_btn').show();
                     $('.update_btn').hide();
                     $('#plus_btn').show();
                     showRulesTable();
                 }
             })
         })
-    })
+    // })
 
     // <tr class="rule-row-${rule.Id}">
     //     <td>${count}</td>
@@ -273,19 +281,14 @@ if ($userEmail &&  $userRole == 'admin') {
     function showRulesTable() {
         $.ajax({
             url: "<?php print site_url('AdminController/showRulesTable'); ?>",
-            type: "GET",
+            type: "POST",
             success: function(res) {
                 const data = JSON.parse(res);
                 let value = '';
                 let count = 0;
 
-
-
-
                 if (data && data.length > 0) {
-                    $("#rules_table_card").show();
-
-
+                    $("#rules_table").show();
                     data.forEach((rule, index) => {
                         count++;
                         value += `
@@ -321,8 +324,7 @@ if ($userEmail &&  $userRole == 'admin') {
                                     </span>
                             </div>
                             </div>
-                        </td>
-                        
+                        </td>   
                     </tr>
                     `;
                     });
@@ -330,8 +332,6 @@ if ($userEmail &&  $userRole == 'admin') {
                     if ($.fn.DataTable.isDataTable('#rules_table')) {
                         $('#rules_table').DataTable().clear().destroy();
                     }
-
-                    // Append new content
                     $("#content_row").html(value);
 
                     $('#rules_table').DataTable({
@@ -342,7 +342,7 @@ if ($userEmail &&  $userRole == 'admin') {
                     });
 
                 } else {
-                    $("#rules_table_card").hide();
+                    // $("#rules_table_card").hide();
                 }
             }
         });
@@ -363,8 +363,8 @@ if ($userEmail &&  $userRole == 'admin') {
             },
             success: function(response) {
                 // alert(response);
+                $(`.${id}`).hide();
                 showRulesTable();
-                $(`.${id}`).remove();
             }
         })
     }

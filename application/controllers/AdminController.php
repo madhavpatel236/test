@@ -33,7 +33,7 @@ class AdminController extends CI_Controller
     public function deleteRule()
     {
         $id = $this->input->post('Id');
-        $this->UserModel->deleteRule($id);
+        return $this->UserModel->deleteRule($id);
     }
 
     public function editRule()
