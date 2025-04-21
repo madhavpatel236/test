@@ -1,6 +1,14 @@
 write_theam
 write_integrator
 
+
+ <div class="content">
+        <?php echo $contentData; ?>
+    </div>
+    <div class="footer">
+        <?php echo $footerData; ?>
+    </div>
+
 <!-- <h4> Question:1 -> Which is Your favorite IPL team? </h4>
                 <input name="question1" id="question1" type="text" style="border: 1px solid black" /> -->
                 <!-- <input type="email" class="form-control form-control-flush" style="border: 1px solid black; margin-left: 10px; "  /> -->

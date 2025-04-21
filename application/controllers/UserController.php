@@ -4,6 +4,7 @@
 /**
  * @property UserModel $UserModel
  * @property CI_Input $input
+ * @property Template $template
  */
 
 
@@ -20,6 +21,7 @@ class UserController extends CI_Controller
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('UserModel');
+        $this->load->library('template');
         // $this->userModelObj = new UserModel();
         // $this->load->database('default');
 
@@ -32,8 +34,10 @@ class UserController extends CI_Controller
 
     public function userHome()
     {
-         $this->load->view('Navbar.php');
-        $this->load->view('UserHome');
+        $data = "madhav";
+        $this->template->loadView('UserHome_template', 'Navbar');
+        $this->template->loadView('UserHome_template', 'UserHome');
+        // $this->load->view('UserHome');
     }
 
     public function register()
@@ -56,7 +60,7 @@ class UserController extends CI_Controller
             $this->errors['password_error'] = "password is reqired";
             $this->isValid = false;
         }
-        
+
         if ($_SESSION['userEmailAlreadyPresent'] == false) {
             $this->errors['general_error'] = "User already present, please use different email address.";
             $this->isValid = false;

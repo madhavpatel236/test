@@ -16,11 +16,7 @@
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+    <!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UserHome</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
@@ -30,10 +26,8 @@
     <script src="<?= base_url('assets/js/scripts.bundle.js') ?>"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-</head>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> -->
 
-<body>
     <div class="flex">
         <h3 id="complete_message" style="display: none;"> Quiz was completed by you. </h3>
 
@@ -131,7 +125,6 @@
 
 
     </div>
-</body>
 
 <script>
     $(document).ready(function() {
@@ -278,4 +271,3 @@
     }
 </script>
 
-</html>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-session_start();
-$_SESSION['currentUserEmailID'];
+// session_start();
+// $_SESSION['currentUserEmailID'];
 class UserModel extends CI_Model
 {
     public $lastRankInDB = null;
@@ -10,7 +10,7 @@ class UserModel extends CI_Model
     public function __construct()
     {
         parent::__construct();
-        $this->userEmail =  $_SESSION['currentUserEmailID'];
+        // $this->userEmail =  $_SESSION['currentUserEmailID'];
         // $this->load->database('default', TRUE);
     }
 
@@ -42,7 +42,7 @@ class UserModel extends CI_Model
             // $this->load->view('/AdminHome');
             $_SESSION['currentUserEmailID'] = $email;
             $_SESSION['userRole'] = "user";
-            redirect('AuthController/userView');
+            redirect('UserController/userHome');
         } else {
             $_SESSION['currentUserEmailID'] = null;
             $_SESSION['userRole'] = null;
@@ -70,7 +70,7 @@ class UserModel extends CI_Model
         if ($isInsert) {
             $_SESSION['currentUserEmailID'] = $email;
             $_SESSION['userRole'] = "user";
-            redirect('AuthController/userView');
+            redirect('UserController/userHome');
         } else {
             $_SESSION['currentUserEmailID'] = null;
             $_SESSION['userRole'] = null;

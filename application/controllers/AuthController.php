@@ -1,13 +1,20 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
-session_start();
-$_SESSION['currentUserEmailID'];
-$_SESSION['userRole'] ;
-$_SESSION['userEmailAlreadyPresent'] = true;
 
+
+
+defined('BASEPATH') or exit('No direct script access allowed');
+// session_start();
+// $_SESSION['currentUserEmailID'];
+// $_SESSION['userRole'];
+// $_SESSION['userEmailAlreadyPresent'] = true;
+/**
+ * @property UserModel $UserModel
+ * @property CI_Input $input
+ * @property Template $Template
+ */
 class AuthController extends CI_Controller
 {
-    public $userModelObj;
+    // public $userModelObj;
     public $email;
     public $password;
     public $errors = ["email_error" => "", "password_error" => ""];
@@ -15,11 +22,14 @@ class AuthController extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('Template');
         $this->load->model('UserModel');
-        $this->userModelObj =  new UserModel();
+        // $this->userModelObj =  new UserModel();
         // $this->load->database('default', TRUE);
         $this->load->database('default');
         $this->load->helper('url');
+
+
 
         // $this->email = $_POST['login_email'];
         // $this->password = $_POST['login_password'];
@@ -68,7 +78,8 @@ class AuthController extends CI_Controller
         }
 
 
-        $this->userModelObj->authentication($this->email, $this->password);
+        // $this->userModelObj->authentication($this->email, $this->password);
+        $this->UserModel->authentication($this->email, $this->password);
     }
 
     public function adminView()
@@ -77,12 +88,14 @@ class AuthController extends CI_Controller
     }
     public function userView()
     {
+        // $this->Template->load();
         $this->load->view('UserHome');
     }
 
     public function reloadPageChack()
     {
-        var_dump('hii'); exit;
+        var_dump('hii');
+        exit;
         $userEmail = $_SESSION['currentUserEmailID'];
         $userRole = $_SESSION['userRole'];
         // var_dump($userRole);

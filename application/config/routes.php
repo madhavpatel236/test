@@ -20,3 +20,7 @@ $route['UserController/view'] = 'UserController/view';
 $route['UserController/userHome'] = 'UserController/userHome';
 $route['UserController/showUserRankTable'] = 'UserController/showUserRankTable';
 $route['UserController/insertUserData'] = 'UserController/insertUserData';
+
+
+
+// $route['/templates/UserHome_template.php'] = '/templates/UserHome_template.php';
