@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-// session_start();
-// $_SESSION['currentUserEmailID'];
-// $_SESSION['userRole'] ;
-// $_SESSION['userEmailAlreadyPresent'] = true;
+session_start();
+$_SESSION['currentUserEmailID'];
+$_SESSION['userRole'] ;
+$_SESSION['userEmailAlreadyPresent'] = true;
 
 class AuthController extends CI_Controller
 {

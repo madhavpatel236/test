@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 session_start();
-$_SESSION['currentUserEmailID'] = null;
+$_SESSION['currentUserEmailID'];
 class UserModel extends CI_Model
 {
     public $lastRankInDB = null;
@@ -167,8 +167,8 @@ class UserModel extends CI_Model
         $this->db->where('Email', $_SESSION['currentUserEmailID']);
         $id = $this->db->get();
         $userId = (int) $id->result()[0]->Id;
-
-        // var_dump($rankArray[0]['Rank']); exit;
+        
+        // var_dump($curentUserEmail); exit;
         // update rank if needed
         if (count($rankArray) != 0) {
             for ($i = 0; $i < count($rankArray); $i++) {
@@ -254,12 +254,12 @@ class UserModel extends CI_Model
 
     public function userTestStatus()
     {
-        // var_dump("dvfdv"); exit;
         $this->db->select("Email");
         $this->db->from('userData');
         $this->db->where(["Email" => $this->userEmail]);
         $isUserComplete = $this->db->get();
         // var_dump($isUserComplete->num_rows()); exit;
+        // echo __LINE__; var_dump($isUserComplete->num_rows()); exit;
         if ($isUserComplete->num_rows() > 0) {
             return false;
         } else {

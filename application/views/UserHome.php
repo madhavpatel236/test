@@ -171,7 +171,7 @@
             url: "<?php print site_url('UserController/isUserCompleteTest') ?>",
             type: "GET",
             success: function(res) {
-                // alert(res);
+                alert(res); 
                 if (res == 'false') {
                     $('#quizeForm').hide();
                     $('#complete_message').show();
