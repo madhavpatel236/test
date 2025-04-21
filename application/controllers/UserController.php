@@ -32,6 +32,7 @@ class UserController extends CI_Controller
 
     public function userHome()
     {
+         $this->load->view('Navbar.php');
         $this->load->view('UserHome');
     }
 
