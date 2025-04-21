@@ -1,17 +1,17 @@
 <?php
 
-$userEmail = $_SESSION['currentUserEmailID'];
-$userRole = $_SESSION['userRole'];
-if ($userEmail &&  $userRole == 'admin') {
+// $userEmail = $_SESSION['currentUserEmailID'];
+// $userRole = $_SESSION['userRole'];
+// if ($userEmail &&  $userRole == 'admin') {
 
-    site_url('AuthController/adminView');
-} elseif ($userEmail &&  $userRole == 'user') {
-    site_url('UserController/userHome');
-} else {
-    // var_dump($userRole);
-    // exit;
-    redirect('AuthController/view');
-}
+//     site_url('AuthController/adminView');
+// } elseif ($userEmail &&  $userRole == 'user') {
+//     site_url('UserController/userHome');
+// } else {
+//     // var_dump($userRole);
+//     // exit;
+//     redirect('AuthController/view');
+// }
 ?>
 
 <!DOCTYPE html>
@@ -292,7 +292,7 @@ if ($userEmail &&  $userRole == 'admin') {
                     data.forEach((rule, index) => {
                         count++;
                         value += `
-                    <tr> 
+                    <tr id='${rule.Id}'> 
                         <td>
                             <span class="text-dark fw-bolder fs-6">${count}</span>
                         </td>
@@ -363,7 +363,7 @@ if ($userEmail &&  $userRole == 'admin') {
             },
             success: function(response) {
                 // alert(response);
-                $(`.${id}`).hide();
+                $(`#${id}`).hide();
                 showRulesTable();
             }
         })

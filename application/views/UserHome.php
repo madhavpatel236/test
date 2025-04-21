@@ -1,18 +1,18 @@
 <?php
 
-$userEmail = $_SESSION['currentUserEmailID'];
-$userRole = $_SESSION['userRole'];
-// var_dump($userEmail);
-// var_dump($userRole);
-// exit;    
-if ($userEmail &&  $userRole == 'admin') {
-    site_url('AuthController/adminView');
-} elseif ($userEmail &&  $userRole == 'user') {
-    // var_dump('dsfv');exit;
-    site_url('AuthController/UserHome');
-} else {
-    redirect('AuthController/view');
-}
+// $userEmail = $_SESSION['currentUserEmailID'];
+// $userRole = $_SESSION['userRole'];
+// // var_dump($userEmail);
+// // var_dump($userRole);
+// // exit;    
+// if ($userEmail &&  $userRole == 'admin') {
+//     site_url('AuthController/adminView');
+// } elseif ($userEmail &&  $userRole == 'user') {
+//     // var_dump('dsfv');exit;
+//     site_url('AuthController/UserHome');
+// } else {
+//     redirect('AuthController/view');
+// }
 
 ?>
 

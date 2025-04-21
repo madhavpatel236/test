@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 session_start();
-// $_SESSION['currentUserEmailID'] = null;
+$_SESSION['currentUserEmailID'] = null;
 class UserModel extends CI_Model
 {
     public $lastRankInDB = null;
