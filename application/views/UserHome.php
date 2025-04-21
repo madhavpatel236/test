@@ -16,26 +16,15 @@
 
 ?>
 
-    <!-- <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UserHome</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
-    <link href="<?= base_url('assets/plugins/global/plugins.bundle.css') ?>" rel="stylesheet" />
-    <link href="<?= base_url('assets/css/style.bundle.css') ?>" rel="stylesheet" />
-    <script src="<?= base_url('assets/plugins/global/plugins.bundle.js') ?>"></script>
-    <script src="<?= base_url('assets/js/scripts.bundle.js') ?>"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> -->
-
-    <div class="flex">
+    <div class="">
         <h3 id="complete_message" style="display: none;"> Quiz was completed by you. </h3>
 
-        <form id="quizeForm" class="quizeForm flex" method="post" action="<?php print site_url('UserController/insertUserData') ?>">
-            <div class="post d-flex flex-column-fluid mw-lg-700px mt-20" id="kt_post">
+        <!-- questions -->
+        <form id="quizeForm" class="quizeForm  mt-10" method="post" action="<?php print site_url('UserController/insertUserData') ?>">
+            <div class="post flex  mw-lg-700px  m-xl-auto mt-20" id="kt_post">
                 <div id="kt_content_container" class="container-xxl">
-                    <div class="card">
-                        <div class="card-body pb-0">
+                    <div class="card ">
+                        <div class="card-body  ">
                             <div class="card-px pt-10 pb-5">
                                 <div class="modal-body scroll-y pt-0 pb-15">
                                     <!--begin::Wrapper-->
@@ -102,7 +91,7 @@
         </form>
 
         <!-- Rank table -->
-        <div class="card mt-10 justify-content-center  w-400px ">
+        <div class="card  mx-xl-auto mt-10  mw-lg-900px   ">
             <div class="card-header  ">
                 <h3 class="card-title"> <strong> Points Table</strong></h3>
             </div>

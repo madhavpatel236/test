@@ -32,7 +32,7 @@ class Template extends CI_Controller
             } else {
                 show_error('Unable to load the requested file: ' . $temp_name . '/' . $load_viewFile . '.php');
             }
-            
+
             $body = $this->CI->load->view($body_view_path, $data, TRUE);
             // var_dump($body); exit;
             //  If $data was not supplied to the load() call, $data is assigned to an array containing $body under key body. If the parameter was supplied, $body is added to the list by either assigning it to an array key, or object property, both also named body.

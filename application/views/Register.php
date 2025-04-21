@@ -32,7 +32,7 @@
 
 </head>
 
-<body id="kt_body" class="bg-body">
+<body id="kt_body" class="bg-body ">
     <!-- 
 <form method="post" id="register_form" action="<?php echo site_url('UserController/register'); ?>">
         <span for="register_name"> Name </span>
@@ -54,14 +54,14 @@
     </form> -->
 
     <!--begin::Main-->
-    <div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-column flex-root ">
         <!--begin::Authentication - Sign-up -->
-        <div class="d-flex flex-column flex-lg-row flex-column-fluid">
+        <div class="d-flex  flex-column flex-lg-row flex-column-fluid">
 
             <!--begin::Body-->
-            <div class="d-flex flex-column flex-lg-row-fluid py-10">
+            <div class="d-flex  flex-column flex-lg-row-fluid py-10">
                 <!--begin::Content-->
-                <div class="d-flex flex-center flex-column flex-column-fluid">
+                <div class="d-flex  flex-center flex-column flex-column-fluid">
                     <!--begin::Wrapper-->
                     <div class="w-lg-600px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->

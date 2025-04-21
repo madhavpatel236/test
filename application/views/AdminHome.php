@@ -14,27 +14,7 @@
 // }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
-    <link href="<?= base_url('assets/plugins/global/plugins.bundle.css') ?>" rel="stylesheet" />
-    <link href="<?= base_url('assets/css/style.bundle.css') ?>" rel="stylesheet" />
-    <script src="<?= base_url('assets/plugins/global/plugins.bundle.js') ?>"></script>
-    <script src="<?= base_url('assets/js/scripts.bundle.js') ?>"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-
-</head>
-
-<body>
-    <?php $this->load->view('Navbar.php') ?>
 
     <!-- <div>
         <input name="user_number0" id="user_number0" type="number" min="0" />
@@ -47,7 +27,7 @@
 
     <!-- <button id="add_btn" class="add_btn" name="add_btn"> Add </button> -->
     <!-- <button style="display: none;" id="update_btn" class="update_btn" name="update_btn"> Update </button> -->
-    <div class="card-px text-center pt-20 pb-5">
+    <div class="card-px text-center pt-20 pb-5 ">
         <a href="#" id="add_new_rule_btn" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">Add New Rules</a>
     </div>
     <div class="modal fade" id="kt_modal_new_address" tabindex="-1" aria-hidden="true">
@@ -177,7 +157,6 @@
     </div> -->
 
 
-</body>
 
 <script>
     showRulesTable()
@@ -392,4 +371,3 @@
     }
 </script>
 
-</html>

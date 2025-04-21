@@ -10,7 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 /**
  * @property UserModel $UserModel
  * @property CI_Input $input
- * @property Template $Template
+ * @property Template $template
  */
 class AuthController extends CI_Controller
 {
@@ -22,7 +22,7 @@ class AuthController extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('Template');
+        $this->load->library('template');
         $this->load->model('UserModel');
         // $this->userModelObj =  new UserModel();
         // $this->load->database('default', TRUE);
@@ -84,7 +84,8 @@ class AuthController extends CI_Controller
 
     public function adminView()
     {
-        $this->load->view('AdminHome');
+        $this->template->loadView('UserHome_template', 'Navbar');
+        $this->template->loadView('UserHome_template', 'AdminHome');
     }
     public function userView()
     {
