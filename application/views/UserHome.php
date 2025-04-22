@@ -1,26 +1,10 @@
 <?php
-
-// $userEmail = $_SESSION['currentUserEmailID'];
-// $userRole = $_SESSION['userRole'];
-// // var_dump($userEmail);
-// // var_dump($userRole);
-// // exit;    
-// if ($userEmail &&  $userRole == 'admin') {
-//     site_url('AuthController/adminView');
-// } elseif ($userEmail &&  $userRole == 'user') {
-//     // var_dump('dsfv');exit;
-//     site_url('AuthController/UserHome');
-// } else {
-//     redirect('AuthController/view');
-// }
-
-
 ?>
 
 
 <div class="">
     <h2 id="complete_message" style="display: none; margin-top: 20px; margin-left: 40%; "> Quiz was completed by you. </h2>
-    
+
     <!-- questions -->
     <form id="quizeForm" class="quizeForm  mt-10" method="post" action="<?php print site_url('UserController/insertUserData') ?>">
         <div class="post flex  mw-lg-700px  m-xl-auto mt-20" id="kt_post">

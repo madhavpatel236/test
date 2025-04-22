@@ -1,163 +1,151 @@
 <?php
 
-// $userEmail = $_SESSION['currentUserEmailID'];
-// $userRole = $_SESSION['userRole'];
-// if ($userEmail &&  $userRole == 'admin') {
-
-//     site_url('AuthController/adminView');
-// } elseif ($userEmail &&  $userRole == 'user') {
-//     site_url('UserController/userHome');
-// } else {
-//     // var_dump($userRole);
-//     // exit;
-//     redirect('AuthController/view');
-// }
 ?>
 
 
 
-    <!-- <div>
+<!-- <div>
         <input name="user_number0" id="user_number0" type="number" min="0" />
         <input name="points0" id="points0" type="number" min="0" />
         <input id="edit_id" type="hidden" />
         <button id="plus_btn" name="plus_btn"> + </button>
     </div> <br> -->
 
-    <!-- <div class="plus_data_div" id="plus_data_div" name="plus_data_div"></div> -->
+<!-- <div class="plus_data_div" id="plus_data_div" name="plus_data_div"></div> -->
 
-    <!-- <button id="add_btn" class="add_btn" name="add_btn"> Add </button> -->
-    <!-- <button style="display: none;" id="update_btn" class="update_btn" name="update_btn"> Update </button> -->
-    <div class="card-px text-center pt-20 pb-5 ">
-        <a href="#" id="add_new_rule_btn" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">Add New Rules</a>
-    </div>
-    <div class="modal fade" id="kt_modal_new_address" tabindex="-1" aria-hidden="true">
+<!-- <button id="add_btn" class="add_btn" name="add_btn"> Add </button> -->
+<!-- <button style="display: none;" id="update_btn" class="update_btn" name="update_btn"> Update </button> -->
+<div class="card-px text-center pt-20 pb-5 ">
+    <a href="#" id="add_new_rule_btn" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">Add New Rules</a>
+</div>
+<div class="modal fade" id="kt_modal_new_address" tabindex="-1" aria-hidden="true">
 
-        <!--begin::Modal dialog-->
-        <div class=" model_box modal-dialog modal-dialog-centered mw-650px">
-            <!--begin::Modal content-->
-            <div class="modal-content">
-                <!--begin::Form-->
-                <!-- <form class="form" method="post" id="kt_modal_new_address_form"> -->
-                <!--begin::Modal header-->
-                <div class="modal-header" id="kt_modal_new_address_header">
-                    <!--begin::Modal title-->
-                    <h2>Add New Rules</h2>
-                    <!--end::Modal title-->
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                        <span class="svg-icon svg-icon-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                    </div>
-                    <!--end::Close-->
+    <!--begin::Modal dialog-->
+    <div class=" model_box modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Form-->
+            <!-- <form class="form" method="post" id="kt_modal_new_address_form"> -->
+            <!--begin::Modal header-->
+            <div class="modal-header" id="kt_modal_new_address_header">
+                <!--begin::Modal title-->
+                <h2>Add New Rules</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
                 </div>
-                <!--end::Modal header-->
-                <!--begin::Modal body-->
-                <div class="modal-body py-10 px-lg-17">
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body py-10 px-lg-17">
 
-                    <!--begin::Scroll-->
-                    <div class="scroll-y me-n9 pe-lg-19" id="kt_modal_new_address_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_address_header" data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="500px">
-                        <div class="row mb-5">
-                            <div class="col-md-5 fv-row">
-                                <label class="required fs-5 fw-bold mb-2">Number of Players</label>
-                                <input name="user_number0" id="user_number0" type="number" min="0" class="form-control form-control-solid" placeholder="Enter No. of players" />
-                            </div>
-                            <div class="col-md-5  fv-row">
-                                <label class="required fs-5 fw-bold mb-2">Points</label>
-                                <input name="points0" id="points0" type="number" min="0" class="form-control form-control-solid" placeholder="Enter points" />
-                            </div>
-                            <input id="edit_id" type="hidden" />
-                            <div class="col-md-2 fv-row">
-                                <label class=" pt-15 fs-5 fw-bold mb-2"></label>
-                                <button id="plus_btn" class="plus_btn btn btn-primary" name="plus_btn"> + </button>
-                            </div>
-                            <div class="plus_data_div" id="plus_data_div" name="plus_data_div"></div>
+                <!--begin::Scroll-->
+                <div class="scroll-y me-n9 pe-lg-19" id="kt_modal_new_address_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_address_header" data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="500px">
+                    <div class="row mb-5">
+                        <div class="col-md-5 fv-row">
+                            <label class="required fs-5 fw-bold mb-2">Number of Players</label>
+                            <input name="user_number0" id="user_number0" type="number" min="0" class="form-control form-control-solid" placeholder="Enter No. of players" />
                         </div>
+                        <div class="col-md-5  fv-row">
+                            <label class="required fs-5 fw-bold mb-2">Points</label>
+                            <input name="points0" id="points0" type="number" min="0" class="form-control form-control-solid" placeholder="Enter points" />
+                        </div>
+                        <input id="edit_id" type="hidden" />
+                        <div class="col-md-2 fv-row">
+                            <label class=" pt-15 fs-5 fw-bold mb-2"></label>
+                            <button id="plus_btn" class="plus_btn btn btn-primary" name="plus_btn"> + </button>
+                        </div>
+                        <div class="plus_data_div" id="plus_data_div" name="plus_data_div"></div>
                     </div>
-                    <!--end::Scroll-->
                 </div>
-                <!--end::Modal body-->
-                <!--begin::Modal footer-->
-                <div class="modal-footer flex-center">
-                    <!--begin::Button-->
-                    <!-- <button type="reset" id="kt_modal_new_address_cancel" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address" class="btn btn-light me-3">Discard</button> -->
-                    <!--end::Button-->
-                    <!--begin::Button-->
-                    <button type="submit" name="add_btn" id="add_btn kt_modal_new_address_cancel" class="add_btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">
-                        <!-- <button id="add_btn" class="add_btn" name="add_btn"> Add </button> -->
-                        <!-- <button style="display: none;" id="update_btn" class="update_btn" name="update_btn"> Update </button> -->
-                        <span class="indicator-label">Submit</span>
-                        <span class="indicator-progress">Please wait...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                    </button>
-
+                <!--end::Scroll-->
+            </div>
+            <!--end::Modal body-->
+            <!--begin::Modal footer-->
+            <div class="modal-footer flex-center">
+                <!--begin::Button-->
+                <!-- <button type="reset" id="kt_modal_new_address_cancel" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address" class="btn btn-light me-3">Discard</button> -->
+                <!--end::Button-->
+                <!--begin::Button-->
+                <button type="submit" name="add_btn" id="add_btn kt_modal_new_address_cancel" class="add_btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">
+                    <!-- <button id="add_btn" class="add_btn" name="add_btn"> Add </button> -->
                     <!-- <button style="display: none;" id="update_btn" class="update_btn" name="update_btn"> Update </button> -->
-                    <button style="display: none;" name="update_btn" id="update_btn kt_modal_new_address_cancel" class="update_btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">
-                        <span class="indicator-label">Update</span>
-                        <span class="indicator-progress">Please wait...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                    </button>
+                    <span class="indicator-label">Submit</span>
+                    <span class="indicator-progress">Please wait...
+                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                </button>
+
+                <!-- <button style="display: none;" id="update_btn" class="update_btn" name="update_btn"> Update </button> -->
+                <button style="display: none;" name="update_btn" id="update_btn kt_modal_new_address_cancel" class="update_btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">
+                    <span class="indicator-label">Update</span>
+                    <span class="indicator-progress">Please wait...
+                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                </button>
 
 
-                    <!--end::Button-->
-                </div>
-                <!--end::Modal footer-->
-                <!-- </form> -->
-                <!--end::Form-->
+                <!--end::Button-->
             </div>
+            <!--end::Modal footer-->
+            <!-- </form> -->
+            <!--end::Form-->
         </div>
     </div>
+</div>
 
-    <div class="card mt-10 mx-19">
-        <div class="card-header  ">
-            <h3 class="card-title"> <strong> Rules Table</strong></h3>
-        </div>
-        <div class="card-body py-3 ">
-            <div class="table-responsive ">
-                <table style="display: none;" class="table table-row-dashed table-row-gray-300 align-middle gs-0  gy-6" id="rules_table">
-                    <thead>
-                        <tr class="fw-bolder text-muted">
-                            <th class="min-w-100px">#</th>
-                            <th class="min-w-150px">No. of Players</th>
-                            <th class="min-w-140px">Points</th>
-                            <th class="min-w-100px text-end">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="content_row">
-                    </tbody>
-                </table>
-            </div>
+<div class="card mt-10 mx-19">
+    <div class="card-header  ">
+        <h3 class="card-title"> <strong> Rules Table</strong></h3>
+    </div>
+    <div class="card-body py-3 ">
+        <div class="table-responsive ">
+            <table style="display: none;" class="table table-row-dashed table-row-gray-300 align-middle gs-0  gy-6" id="rules_table">
+                <thead>
+                    <tr class="fw-bolder text-muted">
+                        <th class="min-w-100px">#</th>
+                        <th class="min-w-150px">No. of Players</th>
+                        <th class="min-w-140px">Points</th>
+                        <th class="min-w-100px text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="content_row">
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
-    <div class="card  mx-xl-auto mt-10 mb-10  mw-lg-500px   ">
-        <div class="card-header  ">
-            <h3 class="card-title"> <strong> Points Table</strong></h3>
-        </div>
-        <div class="card-body py-3 ">
-            <div class="table-responsive ">
-                <table class="rankTable table table-row-dashed table-row-gray-300 align-middle gs-0  gy-6" name="rankTable" id="rankTable rules_table">
-                    <thead id="table_head" class="table_head" name="table_head">
-                        <tr class="fw-bolder text-muted">
-                            <th class="min-w-100px">Rank</th>
-                            <th class="min-w-150px">Name</th>
-                            <th class="min-w-140px">Points</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody" class="tableBody" name="tableBody">
-                    </tbody>
-                </table>
-            </div>
+<div class="card  mx-xl-auto mt-10 mb-10  mw-lg-500px   ">
+    <div class="card-header  ">
+        <h3 class="card-title"> <strong> Points Table</strong></h3>
+    </div>
+    <div class="card-body py-3 ">
+        <div class="table-responsive ">
+            <table class="rankTable table table-row-dashed table-row-gray-300 align-middle gs-0  gy-6" name="rankTable" id="rankTable rules_table">
+                <thead id="table_head" class="table_head" name="table_head">
+                    <tr class="fw-bolder text-muted">
+                        <th class="min-w-100px">Rank</th>
+                        <th class="min-w-150px">Name</th>
+                        <th class="min-w-140px">Points</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody" class="tableBody" name="tableBody">
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
 
-    <!-- <div style="display: none;">
+<!-- <div style="display: none;">
         <div>
             <h3 class="card-title">Rules Table</h3>
         </div>
@@ -188,20 +176,20 @@
 
     // $(document).ready(function() {
 
-        $('#add_new_rule_btn').click(function() {
-            $('#plus_btn').show();
-            $('.update_btn').hide();
-            $('.add_btn').show();
-            $('#user_number0').val("");
-            $('#points0').val("");
-            $('.plus_data_div').html("");
-        })
+    $('#add_new_rule_btn').click(function() {
+        $('#plus_btn').show();
+        $('.update_btn').hide();
+        $('.add_btn').show();
+        $('#user_number0').val("");
+        $('#points0').val("");
+        $('.plus_data_div').html("");
+    })
 
-        $('#plus_btn').click(function() {
-            count += 1;
-            if (count >= 1) {
+    $('#plus_btn').click(function() {
+        count += 1;
+        if (count >= 1) {
 
-                var field = `
+            var field = `
                     <div class="row added_row_div   mt-5 new_added_div${count}" id='${count}'>
                         <div class="col-md-5 fv-row">
                             <input name="user_number0" id="user_number${count}" type="number" min="0" class="form-control form-control-solid" placeholder="Enter No. of players" />
@@ -213,59 +201,59 @@
                         <div class="col-md-2 fv-row">
                             <button onclick='removeFieldData(${count})'  class="remove_btn btn btn-primary" id = '${count}'> - </button>
                         </div> <br/> `;
-                $('.plus_data_div').append(field)
-            };
-        })
+            $('.plus_data_div').append(field)
+        };
+    })
 
-        $('.add_btn').click(function() {
-            // e.preventDefault();
-            for (let i = 0; i <= count; i++) {
-                var numberOfUser = $(`#user_number${i}`).val();
-                var points = $(`#points${i}`).val();
-                numberOfUserArray[i] = numberOfUser;
-                pointsArray[i] = points;
+    $('.add_btn').click(function() {
+        // e.preventDefault();
+        for (let i = 0; i <= count; i++) {
+            var numberOfUser = $(`#user_number${i}`).val();
+            var points = $(`#points${i}`).val();
+            numberOfUserArray[i] = numberOfUser;
+            pointsArray[i] = points;
+        }
+
+        $.ajax({
+            url: "<?php echo site_url('AdminController/addRules'); ?>",
+            type: "POST",
+            data: {
+                action: "add",
+                numberOfUser: numberOfUserArray,
+                points: pointsArray
+            },
+            success: function(response) {
+                // alert(response);
+                // $('.model_box').hide();
+
+                showRulesTable();
+            },
+        });
+    })
+
+    $(".update_btn").click(function() {
+
+        var userNumbers = $('#user_number0').val();
+        var points = $('#points0').val();
+        var id = $('#edit_id').val();
+
+        $.ajax({
+            url: '<?php print site_url('AdminController/updateRule') ?>',
+            type: "post",
+            data: {
+                UserNumbers: userNumbers,
+                Points: points,
+                Id: id
+            },
+            success: function(res) {
+                // alert(res); exit;
+                $('.add_btn').show();
+                $('.update_btn').hide();
+                $('#plus_btn').show();
+                showRulesTable();
             }
-
-            $.ajax({
-                url: "<?php echo site_url('AdminController/addRules'); ?>",
-                type: "POST",
-                data: {
-                    action: "add",
-                    numberOfUser: numberOfUserArray,
-                    points: pointsArray
-                },
-                success: function(response) {
-                    // alert(response);
-                    // $('.model_box').hide();
-
-                    showRulesTable();
-                },
-            });
         })
-
-        $(".update_btn").click(function() {
-
-            var userNumbers = $('#user_number0').val();
-            var points = $('#points0').val();
-            var id = $('#edit_id').val();
-
-            $.ajax({
-                url: '<?php print site_url('AdminController/updateRule') ?>',
-                type: "post",
-                data: {
-                    UserNumbers: userNumbers,
-                    Points: points,
-                    Id: id
-                },
-                success: function(res) {
-                    // alert(res); exit;
-                    $('.add_btn').show();
-                    $('.update_btn').hide();
-                    $('#plus_btn').show();
-                    showRulesTable();
-                }
-            })
-        })
+    })
     // })
 
     // <tr class="rule-row-${rule.Id}">
@@ -457,4 +445,3 @@
         })
     }
 </script>
-

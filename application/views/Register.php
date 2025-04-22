@@ -1,16 +1,5 @@
 <?php
-// $userEmail = $_SESSION['currentUserEmailID'];
-// $userRole = $_SESSION['userRole'];
-// // var_dump($userEmail);
-// // var_dump($userRole);
-// // exit;    
-// if ($userEmail &&  $userRole == 'admin') {
-//     site_url('AuthController/adminView');
-// } elseif ($userEmail &&  $userRole == 'user') {
-//     site_url('UserController/userHome');
-// } else {
-//     site_url('AuthController/view');
-// }
+
 
 ?>
 <!DOCTYPE html>
@@ -122,7 +111,7 @@
 
                                 </div>
                                 <!--end::Wrapper-->
-                                <span name="credential_error" class="credential_error text-center text-danger" id="credential_error"> <?php if (isset($_SESSION['credential_error'])) echo ($_SESSION['credential_error']); ?> </span> <br /> <br />
+                                <span name="credential_error" class="credential_error text-center text-danger" id="credential_error"> <?php $check = $this->session->userdata('credential_error'); if(isset($check)) echo $check; ?> </span> <br /> <br />
                                 <input type="hidden" id="user_role" name="user_role" value="user" />
                             </div>
                             <!--end::Input group=-->
@@ -131,7 +120,7 @@
                                 <!-- <button class="submit_login"> Submit </button> -->
                                 <div class="text-center">
                                     <!--begin::Submit button-->
-                                    <button type="submit" name="submit_login" id="submit_login kt_sign_in_submit" class="submit_login btn btn-lg btn-primary w-100 mb-5">
+                                    <button type="submit" name="submit_login" id="submit_login kt_sign_in_submit" class="submit_login btn btn-lg btn-primary w-100 mb-5">   
                                         Submit
                                     </button>
                                     <!--end::Submit button-->

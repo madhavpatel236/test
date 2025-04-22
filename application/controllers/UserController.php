@@ -5,6 +5,7 @@
  * @property UserModel $UserModel
  * @property CI_Input $input
  * @property Template $template
+ * @property CI_Session $session
  */
 
 
@@ -26,6 +27,25 @@ class UserController extends CI_Controller
         // $this->userModelObj = new UserModel();
         // $this->load->database('default');
 
+        // $this->session->set_userdata('currentUserEmailID', 'scd');
+        // $this->session->set_userdata('userRole', 'admin');
+        $currentEmail = $this->session->userdata('currentUserEmailID');
+        $currentRole = $this->session->userdata('userRole');
+
+        isset($currentEmail) ? $userEmail = $currentEmail  : "";
+        isset($currentRole) ? $userRole = $currentRole  : "";
+
+        // var_dump(($userEmail)); exit;
+        // var_dump(isset($userEmail) && isset($userRole) && $userRole == 'user');
+        // exit;
+
+        if (isset($userEmail) && isset($userRole) &&  $userRole == 'admin') {
+            site_url('AuthController/adminView');
+        } elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
+            site_url('UserController/userHome');
+        } else {
+            site_url('AuthController/view');
+        }
     }
 
     public function view()

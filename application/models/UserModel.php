@@ -16,53 +16,67 @@ class UserModel extends CI_Model
         $isUserPresent = $this->db->where(["Email" => $email]);
         $data = $this->db->get('auth');
 
-        unset($_SESSION['credential_error']);
-
+        $this->session->unset_userdata('credential_error');
         if ($data->num_rows() == 0) {
-            // $_SESSION[''];
-            $_SESSION['credential_error'] = "Credentials was not correct, please check!!";
+            // var_dump('svfv'); exit;
+            $this->session->set_userdata('credential_error', 'Credentials was not correct, please check!!');
+            // var_dump($_SESSION['credential_error']); exit;
+            // $_SESSION['credential_error'] = "Credentials was not correct, please check!!";
             redirect('AuthController/view');
         }
-        unset($_SESSION['credential_error']);
+        $this->session->unset_userdata('credential_error');
+
         $userPasswordDB = $data->result()[0]->Password;
         $userEmailDB = $data->result()[0]->Email;
         $userRoleDB = $data->result()[0]->Role;
         $varifyPassword = password_verify($password, $userPasswordDB);
 
-        // var_dump(($varifyPassword));exit;
         if ($varifyPassword == false) {
-            $_SESSION['credential_error'] = "Credentials was not correct, please check!!";
+            $this->session->set_userdata('credential_error', 'Credentials was not correct, please check!!');
+            // $_SESSION['credential_error'] = "Credentials was not correct, please check!!";
             redirect('AuthController/view');
         }
 
         // var_dump(password_verify($password, $userPasswordDB ));
 
         if ($data->num_rows() > 0 && $email == $userEmailDB && $varifyPassword  && $userRoleDB == 'admin') {
-            // var_dump($userRoleDB);
-            // $this->load->view('/AdminHome');
-            $_SESSION['currentUserEmailID'] = $email;
-            $_SESSION['userRole'] = "admin";
-            $this->userEmail =  $_SESSION['currentUserEmailID'];
+            // $_SESSION['currentUserEmailID'] = $email;
+            // $_SESSION['userRole'] = "userRole";
+            $this->session->set_userdata('currentUserEmailID', $email);
+            $this->session->set_userdata('userRole', 'admin');
+            $this->userEmail = $this->session->userdata('currentUserEmailID');
+            // $this->userEmail =  $_SESSION['currentUserEmailID'];
             // var_dump( $_SESSION['currentUserEmailID']); exit;
             redirect('AuthController/adminView');
         } else {
-            $_SESSION['currentUserEmailID'] = null;
-            $_SESSION['userRole'] = null;
-            $this->userEmail =  $_SESSION['currentUserEmailID'];
+            // $_SESSION['currentUserEmailID'] = null;
+            // $_SESSION['userRole'] = null;
+            // $this->userEmail =  $_SESSION['currentUserEmailID'];
+
+            $this->session->set_userdata('currentUserEmailID', null);
+            $this->session->set_userdata('userRole', null);
+            $this->userEmail = $this->session->userdata('currentUserEmailID');
         }
 
         if ($data->num_rows() > 0 && $email == $userEmailDB && $varifyPassword  && $userRoleDB == 'user') {
             // var_dump($userRoleDB);
             // $this->load->view('/AdminHome');
-            $_SESSION['currentUserEmailID'] = $email;
-            $_SESSION['userRole'] = "user";
-            $this->userEmail =  $_SESSION['currentUserEmailID'];
+            // $_SESSION['currentUserEmailID'] = $email;
+            $this->session->set_userdata('currentUserEmailID', $email);
+            $this->session->set_userdata('userRole', 'user');
+            // $_SESSION['userRole'] = "user";
+            // $this->userEmail =  $_SESSION['currentUserEmailID'];
+            $this->userEmail = $this->session->userdata('currentUserEmailID');
 
             redirect('UserController/userHome');
         } else {
-            $_SESSION['currentUserEmailID'] = null;
-            $_SESSION['userRole'] = null;
-            $this->userEmail =  $_SESSION['currentUserEmailID'];
+            //    $_SESSION['currentUserEmailID'] = null;
+            $this->session->set_userdata('currentUserEmailID', null);
+            $this->session->set_userdata('userRole', null);
+
+            // $_SESSION['userRole'] = null;
+            $this->userEmail = $this->session->userdata('currentUserEmailID');
+            // $this->userEmail =  $_SESSION['currentUserEmailID'];
         }
     }
 
@@ -76,8 +90,10 @@ class UserModel extends CI_Model
 
 
         if ($alreadyUser->num_rows() > 0) {
-            $_SESSION['userEmailAlreadyPresent'] = false;
-            $_SESSION['credential_error'] = "Email already present, please use different once!!";
+            // $_SESSION['userEmailAlreadyPresent'] = false;
+            $this->session->set_userdata('userEmailAlreadyPresent', false);
+            $this->session->set_userdata('credential_error', 'Email already present, please use different once!!');
+            // $_SESSION['credential_error'] = "Email already present, please use different once!!";
             // var_dump($_SESSION['credential_error']);
             // exit;
             redirect('AuthController/register');
@@ -91,15 +107,22 @@ class UserModel extends CI_Model
         $isInsert = $this->db->insert('auth', ['Name' => $name, 'Email' => $email, 'Password' => $passwordHash, "Role" => $role]);
         // $this->db->
         if ($isInsert) {
-            $_SESSION['currentUserEmailID'] = $email;
-            $_SESSION['userRole'] = "user";
-            $this->userEmail =  $_SESSION['currentUserEmailID'];
+            // $_SESSION['currentUserEmailID'] = $email;
+            // $_SESSION['userRole'] = "user";
+            $this->session->set_userdata('currentUserEmailID', $email);
+            $this->session->set_userdata('userRole', 'user');
+            $this->userEmail = $this->session->userdata('currentUserEmailID');
+            // $this->userEmail =  $_SESSION['currentUserEmailID'];
 
             redirect('UserController/userHome');
         } else {
-            $_SESSION['currentUserEmailID'] = null;
-            $_SESSION['userRole'] = null;
-            $this->userEmail =  $_SESSION['currentUserEmailID'];
+            // $_SESSION['currentUserEmailID'] = null;
+            // $_SESSION['userRole'] = null;
+            $this->session->set_userdata('currentUserEmailID', null);
+            $this->session->set_userdata('userRole', null);
+            $this->userEmail = $this->session->userdata('currentUserEmailID');
+
+            // $this->userEmail =  $_SESSION['currentUserEmailID'];
         }
     }
 
@@ -185,12 +208,13 @@ class UserModel extends CI_Model
                 ];
             }
         }
-        $curentUserEmail = $_SESSION['currentUserEmailID'];
+        // $curentUserEmail = $_SESSION['currentUserEmailID'];
+        $curentUserEmail = $this->session->userdata('currentUserEmailID');
         // var_dump($curentUserEmail);
         // exit;
         $this->db->select('Id');
         $this->db->from('auth');
-        $this->db->where('Email', $_SESSION['currentUserEmailID']);
+        $this->db->where('Email', $curentUserEmail);
         $id = $this->db->get();
         $userId = (int) $id->result()[0]->Id;
 
@@ -282,7 +306,7 @@ class UserModel extends CI_Model
     {
         $this->db->select("Email");
         $this->db->from('userData');
-        $this->db->where(["Email" => $_SESSION['currentUserEmailID']]);
+        $this->db->where(["Email" => $this->session->userdata('currentUserEmailID')]);
         $isUserComplete = $this->db->get();
         // var_dump($isUserComplete->num_rows()); exit;
         // echo __LINE__; var_dump($_SESSION['currentUserEmailID']); exit;

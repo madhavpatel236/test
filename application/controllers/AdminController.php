@@ -3,6 +3,8 @@
 /**
  * @property UserModel $UserModel
  * @property CI_Input $input
+ * @property CI_Session $session
+
  */
 
 class AdminController extends CI_Controller
@@ -14,6 +16,24 @@ class AdminController extends CI_Controller
         $this->load->helper('url');
         $this->load->model('UserModel');
         $this->load->library('session');
+
+        $currentEmail = $this->session->userdata('currentUserEmailID');
+        $currentRole = $this->session->userdata('userRole');
+
+        isset($currentEmail) ? $userEmail = $currentEmail  : "";
+        isset($currentRole) ? $userRole = $currentRole  : "";
+
+        // var_dump(isset($userEmail));
+        // var_dump(isset($userEmail) && isset($userRole) && $userRole == 'user');
+        // exit;
+
+        if (isset($userEmail) && isset($userRole) &&  $userRole == 'admin') {
+            site_url('AuthController/adminView');
+        } elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
+            site_url('UserController/userHome');
+        } else {
+            site_url('AuthController/view');
+        }
     }
 
     public function addRules()

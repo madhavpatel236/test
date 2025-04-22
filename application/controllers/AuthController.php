@@ -1,7 +1,5 @@
 <?php
 
-
-
 defined('BASEPATH') or exit('No direct script access allowed');
 // session_start();
 // $_SESSION['currentUserEmailID'];
@@ -11,6 +9,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @property UserModel $UserModel
  * @property CI_Input $input
  * @property Template $template
+ * @property CI_Session $session
  */
 class AuthController extends CI_Controller
 {
@@ -25,39 +24,63 @@ class AuthController extends CI_Controller
         $this->load->library('template');
         $this->load->model('UserModel');
         $this->load->library('session');
-        // $this->userModelObj =  new UserModel();
-        // $this->load->database('default', TRUE);
         $this->load->database('default');
         $this->load->helper('url');
 
-        // $this->email = $_POST['login_email'];
-        // $this->password = $_POST['login_password'];
 
-        // if ($this->email == null) {
-        //     $this->errors['email_error'] = "Please enter the email address.";
-        // }
+        // $this->session->set_userdata('currentUserEmailID', );
+        // $this->session->set_userdata('userRole', 'admin');
+        // $this->session->userdata('currentUserEmailID');
+
+
+        $currentEmail = $this->session->userdata('currentUserEmailID');
+        $currentRole = $this->session->userdata('userRole');
+
+        isset($currentEmail) ? $userEmail = $currentEmail  : "";
+        isset($currentRole) ? $userRole = $currentRole  : "";
+
+        var_dump(isset($userEmail));
+        // var_dump(isset($userEmail) && isset($userRole) && $userRole == 'user');
+        // exit;
+
+        if (isset($userEmail) && isset($userRole) &&  $userRole == 'admin') {
+            site_url('AuthController/adminView');
+        } elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
+            site_url('UserController/userHome');
+        } else {
+            site_url('AuthController/view');
+        }
     }
 
     public function view()
     {
         $this->template->loadView('UserHome_template', 'Login');
-
         unset($_SESSION['credential_error']);
     }
 
     public function userHome()
     {
-        $this->load->view('UserHome');
+        // $this->load->view('UserHome');
+        $this->template->loadView('UserHome_template', 'UserHome');
     }
 
     public function register()
     {
-        // var_dump($_SESSION['credential_error']);
-        // exit;
-        // $this->load->view('Register');
-        $this->template->loadView('UserHome_template','Register');
+        $this->template->loadView('UserHome_template', 'Register');
         unset($_SESSION['credential_error']);
     }
+
+    public function adminView()
+    {
+        $this->template->loadView('UserHome_template', 'Navbar');
+        $this->template->loadView('UserHome_template', 'AdminHome');
+    }
+
+    // public function userView()
+    // {
+    //     // $this->Template->load();
+    //     $this->load->view('UserHome');
+    // }
 
     public function auth()
     {
@@ -89,16 +112,8 @@ class AuthController extends CI_Controller
         $this->UserModel->authentication($this->email, $this->password);
     }
 
-    public function adminView()
-    {
-        $this->template->loadView('UserHome_template', 'Navbar');
-        $this->template->loadView('UserHome_template', 'AdminHome');
-    }
-    public function userView()
-    {
-        // $this->Template->load();
-        $this->load->view('UserHome');
-    }
+
+
 
     public function reloadPageChack()
     {
