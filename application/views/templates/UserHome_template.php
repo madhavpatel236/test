@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="Navbar_Page ">
+    <div class="Content ">
         <?php echo $body;  ?>
     </div>
 

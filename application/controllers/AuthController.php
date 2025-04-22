@@ -40,7 +40,8 @@ class AuthController extends CI_Controller
 
     public function view()
     {
-        $this->load->view('Login');
+        $this->template->loadView('UserHome_template', 'Login');
+
         unset($_SESSION['credential_error']);
     }
 
@@ -53,7 +54,8 @@ class AuthController extends CI_Controller
     {
         // var_dump($_SESSION['credential_error']);
         // exit;
-        $this->load->view('Register');
+        // $this->load->view('Register');
+        $this->template->loadView('UserHome_template','Register');
         unset($_SESSION['credential_error']);
     }
 

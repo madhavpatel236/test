@@ -30,12 +30,12 @@ class UserController extends CI_Controller
 
     public function view()
     {
-        $this->load->view('Register');
+        $this->template->loadView('UserHome_template', 'Register');
     }
 
     public function loginPage()
     {
-        $this->load->view('Login');
+        $this->template->loadView('UserHome_template', 'Login');
     }
 
 
@@ -92,7 +92,7 @@ class UserController extends CI_Controller
             $this->errors['password_error'] = "password is reqired";
             $this->isValid = false;
         }
-        
+
         if ($this->isValid == false) {
             // var_dump($this->role); exit;
             // $this->load->view('Register', $this->errors);
