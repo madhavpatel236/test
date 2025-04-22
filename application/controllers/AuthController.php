@@ -17,7 +17,7 @@ class AuthController extends CI_Controller
     // public $userModelObj;
     public $email;
     public $password;
-    public $errors = ["email_error" => "", "password_error" => ""];
+    public $errors = ["email_error" => "", "password_error" => "", "credential_error" => ""];
     public $isValid = true;
     public function __construct()
     {

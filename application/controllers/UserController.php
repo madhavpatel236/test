@@ -14,7 +14,7 @@ class UserController extends CI_Controller
     public $email;
     public $password;
     public $role;
-    public $errors = ["name_error" => "", "email_error" => "", "password_error" => ""];
+    public $errors = ["name_error" => "", "email_error" => "", "password_error" => "", "credential_error"  => ''];
     public $isValid = true;
     public function __construct()
     {
@@ -87,11 +87,12 @@ class UserController extends CI_Controller
             $this->isValid = false;
         }
 
-        if ($_SESSION['userEmailAlreadyPresent'] == false) {
-            $this->errors['general_error'] = "User already present, please use different email address.";
-            $this->isValid = false;
-        }
+        // if ($_SESSION['userEmailAlreadyPresent'] == false) {
+        //     $this->errors['general_error'] = "User already present, please use different email address.";
+        //     $this->isValid = false;
+        // }
         if ($this->isValid == false) {
+            // var_dump($this->role); exit;
             // $this->load->view('Register', $this->errors);
             redirect('AuthController/register');
         }

@@ -167,7 +167,7 @@ class UserModel extends CI_Model
         $this->db->where('Email', $_SESSION['currentUserEmailID']);
         $id = $this->db->get();
         $userId = (int) $id->result()[0]->Id;
-        
+
         // var_dump($curentUserEmail); exit;
         // update rank if needed
         if (count($rankArray) != 0) {

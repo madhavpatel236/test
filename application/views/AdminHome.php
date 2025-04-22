@@ -135,6 +135,27 @@
         </div>
     </div>
 
+    <div class="card  mx-xl-auto mt-10 mb-10  mw-lg-500px   ">
+        <div class="card-header  ">
+            <h3 class="card-title"> <strong> Points Table</strong></h3>
+        </div>
+        <div class="card-body py-3 ">
+            <div class="table-responsive ">
+                <table class="rankTable table table-row-dashed table-row-gray-300 align-middle gs-0  gy-6" name="rankTable" id="rankTable rules_table">
+                    <thead id="table_head" class="table_head" name="table_head">
+                        <tr class="fw-bolder text-muted">
+                            <th class="min-w-100px">Rank</th>
+                            <th class="min-w-150px">Name</th>
+                            <th class="min-w-140px">Points</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="tableBody" name="tableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 
     <!-- <div style="display: none;">
         <div>
@@ -160,6 +181,7 @@
 
 <script>
     showRulesTable()
+    showRankTable();
     var count = 0;
     var numberOfUserArray = [];
     var pointsArray = [];
@@ -256,6 +278,71 @@
     //     </td>
     // </tr>
 
+    function showRankTable() {
+        $.ajax({
+            url: "<?php print site_url("UserController/showUserRankTable") ?>",
+            type: "GET",
+            data: {},
+            success: function(res) {
+                var user = JSON.parse(res);
+                // alert(user); exit;
+                var value = '';
+                let count = 0;
+
+                if (user && user.length > 0) {
+                    // alert(typeof(user));
+                    user.forEach((userRank, index) => {
+                        // alert(userRank.Name); alert;
+                        count++;
+                        value += `
+                        <tr > 
+                        <td>
+                            <div class="d-flex justify-content-start flex-column">
+                                <span class="text-dark fw-bolder text-hover-primary fs-6">${userRank.Rank}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="text-dark fw-bolder fs-6">${userRank.Name}</span>
+                        </td>
+                        <td>
+                            <span class="text-dark fw-bolder fs-6">${userRank.Points}</span>
+                        </td>
+                    </tr>
+                        `
+                    });
+
+                    if ($.fn.DataTable.isDataTable('.rankTable')) {
+                        $('.rankTable').DataTable().clear().destroy();
+                    }
+                    $(".tableBody").html(value);
+
+                    $('.rankTable').DataTable({
+                        responsive: true,
+                        paging: true,
+                        searching: true,
+                        ordering: true
+                    });
+                } else {
+                    $('.rankTable').hide();
+
+                }
+
+                // if (user.length > 0) {
+                //     $('#rankTable').show();
+                //     for (let i = 0; i < user.length; i++) {
+                //         values += '<tr>';
+                //         values += "<td>" + (user[i].Rank) + "</td> ";
+                //         values += "<td>" + user[i].Name + "</td> ";
+                //         values += "<td>" + user[i].Points + "</td> ";
+                //         values += '</tr>';
+                //         $('#tableBody').html(values);
+                //     }
+                // } else {
+                //     $('#rankTable').hide();
+                // }
+            }
+        })
+    }
 
     function showRulesTable() {
         $.ajax({

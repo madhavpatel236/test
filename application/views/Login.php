@@ -63,7 +63,7 @@
                             <label class="form-label fs-6 fw-bolder text-dark" for="login_email">Email</label>
                             <!-- <input type="email" class="login_email" id="login_email" name="login_email" /> -->
                             <input class="login_email form-control form-control-lg form-control-solid" type="email" name="login_email" id="login_email" />
-                            <span name="email_error" id="email_error"></span> <br /> <br />
+                            <span name="email_error" class="email_error text-danger" id="email_error"></span> <br /> <br />
 
                         </div>
                         <!--end::Input group-->
@@ -75,6 +75,8 @@
                             </div>
                             <!-- <input type="password" class="login_password" id="login_password" name="login_password" /> -->
                             <input class="login_password form-control form-control-lg form-control-solid" type="password" name="login_password" id="login_password" />
+                            <span name="password_error" class="password_error text-danger" id="password_error"></span> <br /> <br />
+
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -82,6 +84,7 @@
                         <div class="text-center">
                             <!--begin::Submit button-->
                             <!-- <button class="submit_login"> Submit </button> -->
+                            <span name="credential_error" class="credential_error text-danger" id="credential_error"></span> <br /> <br />
                             <button type="submit" id="submit_login kt_sign_in_submit" class="submit_login btn btn-lg btn-primary w-100 mb-5">
                                 Submit
                             </button>
@@ -113,11 +116,11 @@
 </body>
 <script>
     $(document).ready(function() {
-        $('#login_form').on('submit', function(e) {
+        $('.login_form').on('submit', function(e) {
             var email = $('#login_email').val();
             var password = $('#login_password').val();
             var error = false;
-            
+            // alert(password); exit;
             if (email.trim() == "") {
                 $("#email_error").html("Please enter a email.");
                 error = true;

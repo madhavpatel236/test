@@ -86,6 +86,7 @@
                                     <label for="register_name" class="form-label fw-bolder text-dark fs-6">First Name</label>
                                     <!-- <input type="text" class="register_name" id="register_name" name="register_name" /> -->
                                     <input class="register_name form-control form-control-lg form-control-solid" type="text" placeholder="" name="register_name" id="register_name" />
+                                    <span name="name_error" id="name_error"></span> <br /> <br />
                                     <!-- <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" autocomplete="off" /> -->
                                 </div>
                                 <!--end::Col-->
@@ -95,6 +96,8 @@
                             <div class="fv-row mb-7">
                                 <label for="register_email" class="form-label fw-bolder text-dark fs-6">Email</label>
                                 <input class="register_email form-control form-control-lg form-control-solid" type="email" placeholder="" name="register_email" id="register_email" />
+                                <span name="email_error" id="email_error"></span> <br /> <br />
+
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
@@ -109,6 +112,8 @@
                                         <!-- <input type="password" class="register_password" id="register_password" name="register_password" /> -->
 
                                         <input class="register_password form-control form-control-lg form-control-solid" type="password" placeholder="" name="register_password" id="register_password" />
+                                        <span name="password_error" id="password_error"></span> <br /> <br />
+
                                         <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                                             <i class="bi bi-eye-slash fs-2"></i>
                                             <i class="bi bi-eye fs-2 d-none"></i>
@@ -118,11 +123,10 @@
 
                                 </div>
                                 <!--end::Wrapper-->
+                                <span name="credential_error" class="credential_error" id="credential_error"></span> <br /> <br />
                                 <input type="hidden" id="user_role" name="user_role" value="user" />
-
                             </div>
                             <!--end::Input group=-->
-
                             <!--begin::Actions-->
                             <div class="text-center">
                                 <!-- <button class="submit_login"> Submit </button> -->
@@ -132,7 +136,6 @@
                                         Submit
                                     </button>
                                     <!--end::Submit button-->
-
                                 </div>
                             </div>
                             <!--end::Actions-->

@@ -19,8 +19,8 @@
 
 
 <div class="">
-    <h3 id="complete_message" style="display: none;"> Quiz was completed by you. </h3>
-
+    <h2 id="complete_message" style="display: none; margin-top: 20px; margin-left: 40%; "> Quiz was completed by you. </h2>
+    
     <!-- questions -->
     <form id="quizeForm" class="quizeForm  mt-10" method="post" action="<?php print site_url('UserController/insertUserData') ?>">
         <div class="post flex  mw-lg-700px  m-xl-auto mt-20" id="kt_post">
@@ -249,14 +249,14 @@
             url: "<?php print site_url('UserController/isUserCompleteTest') ?>",
             type: "GET",
             success: function(res) {
-                // alert(res); 
-                // if (res == 'false') {
-                //     $('#quizeForm').hide();
-                //     $('#complete_message').show();
-                // } else {
-                //     $("#quizeForm").show();
-                //     $('#complete_message').hide();
-                // }
+                // alert(res);  exit;
+                if (res == 'false') {
+                    $('#quizeForm').hide();
+                    $('#complete_message').show();
+                } else {
+                    $("#quizeForm").show();
+                    $('#complete_message').hide();
+                }
             }
         })
     }
