@@ -24,12 +24,11 @@ class AuthController extends CI_Controller
         parent::__construct();
         $this->load->library('template');
         $this->load->model('UserModel');
+        $this->load->library('session');
         // $this->userModelObj =  new UserModel();
         // $this->load->database('default', TRUE);
         $this->load->database('default');
         $this->load->helper('url');
-
-
 
         // $this->email = $_POST['login_email'];
         // $this->password = $_POST['login_password'];

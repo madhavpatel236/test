@@ -1,7 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-// session_start();
-// $_SESSION['currentUserEmailID'];
 class UserModel extends CI_Model
 {
     public $lastRankInDB = null;
@@ -10,7 +8,6 @@ class UserModel extends CI_Model
     public function __construct()
     {
         parent::__construct();
-        // $this->userEmail =  $_SESSION['currentUserEmailID'];
         // $this->load->database('default', TRUE);
     }
 
@@ -30,11 +27,13 @@ class UserModel extends CI_Model
             // $this->load->view('/AdminHome');
             $_SESSION['currentUserEmailID'] = $email;
             $_SESSION['userRole'] = "admin";
+            $this->userEmail =  $_SESSION['currentUserEmailID'];
             // var_dump( $_SESSION['currentUserEmailID']); exit;
             redirect('AuthController/adminView');
         } else {
             $_SESSION['currentUserEmailID'] = null;
             $_SESSION['userRole'] = null;
+            $this->userEmail =  $_SESSION['currentUserEmailID'];
         }
 
         if ($data->num_rows() > 0 && $email == $userEmailDB && $varifyPassword  && $userRoleDB == 'user') {
@@ -42,10 +41,13 @@ class UserModel extends CI_Model
             // $this->load->view('/AdminHome');
             $_SESSION['currentUserEmailID'] = $email;
             $_SESSION['userRole'] = "user";
+            $this->userEmail =  $_SESSION['currentUserEmailID'];
+
             redirect('UserController/userHome');
         } else {
             $_SESSION['currentUserEmailID'] = null;
             $_SESSION['userRole'] = null;
+            $this->userEmail =  $_SESSION['currentUserEmailID'];
         }
     }
 
@@ -70,10 +72,13 @@ class UserModel extends CI_Model
         if ($isInsert) {
             $_SESSION['currentUserEmailID'] = $email;
             $_SESSION['userRole'] = "user";
+            $this->userEmail =  $_SESSION['currentUserEmailID'];
+
             redirect('UserController/userHome');
         } else {
             $_SESSION['currentUserEmailID'] = null;
             $_SESSION['userRole'] = null;
+            $this->userEmail =  $_SESSION['currentUserEmailID'];
         }
     }
 
@@ -256,10 +261,10 @@ class UserModel extends CI_Model
     {
         $this->db->select("Email");
         $this->db->from('userData');
-        $this->db->where(["Email" => $this->userEmail]);
+        $this->db->where(["Email" => $_SESSION['currentUserEmailID']]);
         $isUserComplete = $this->db->get();
         // var_dump($isUserComplete->num_rows()); exit;
-        // echo __LINE__; var_dump($isUserComplete->num_rows()); exit;
+        // echo __LINE__; var_dump($_SESSION['currentUserEmailID']); exit;
         if ($isUserComplete->num_rows() > 0) {
             return false;
         } else {

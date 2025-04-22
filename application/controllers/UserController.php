@@ -22,6 +22,7 @@ class UserController extends CI_Controller
         $this->load->helper('url');
         $this->load->model('UserModel');
         $this->load->library('template');
+        $this->load->library('session');
         // $this->userModelObj = new UserModel();
         // $this->load->database('default');
 

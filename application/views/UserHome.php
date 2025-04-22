@@ -249,8 +249,8 @@
             url: "<?php print site_url('UserController/isUserCompleteTest') ?>",
             type: "GET",
             success: function(res) {
-                // alert(res);  exit;
-                if (res == 'false') {
+                // alert(res); exit;
+                if (res == "false") {
                     $('#quizeForm').hide();
                     $('#complete_message').show();
                 } else {
