@@ -117,6 +117,7 @@
             var email = $('#login_email').val();
             var password = $('#login_password').val();
             var error = false;
+            
             if (email.trim() == "") {
                 $("#email_error").html("Please enter a email.");
                 error = true;

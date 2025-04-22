@@ -14,106 +14,108 @@
 //     redirect('AuthController/view');
 // }
 
+
 ?>
 
-    <div class="">
-        <h3 id="complete_message" style="display: none;"> Quiz was completed by you. </h3>
 
-        <!-- questions -->
-        <form id="quizeForm" class="quizeForm  mt-10" method="post" action="<?php print site_url('UserController/insertUserData') ?>">
-            <div class="post flex  mw-lg-700px  m-xl-auto mt-20" id="kt_post">
-                <div id="kt_content_container" class="container-xxl">
-                    <div class="card ">
-                        <div class="card-body  ">
-                            <div class="card-px pt-10 pb-5">
-                                <div class="modal-body scroll-y pt-0 pb-15">
-                                    <!--begin::Wrapper-->
-                                    <div class="mw-lg-500px mx-auto">
-                                        <!--begin::Heading-->
-                                        <div class="mb-10 text-center">
-                                            <!--begin::Title-->
-                                            <h1 class="mb-3">Questions</h1>
-                                            <!--end::Title-->
-                                        </div>
-                                        <!--end::Heading-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10">
-                                            <h5> Which is Your favorite IPL team?</h5>
-                                            <div class="d-flex">
-                                                <input id="question1 kt_share_earn_link_input" type="text" class="question1 form-control form-control-solid me-3 flex-grow-1" name="question1" />
-                                            </div>
-                                        </div>
-                                        <!--end::Input group-->
-                                        <div class="mb-10">
-                                            <h5 class=""> Which is your favorite player?</h5>
-                                            <div class="d-flex">
-                                                <input id="question2 kt_share_earn_link_input" type="text" class="question2 form-control form-control-solid me-3 flex-grow-1" name="question2" />
-                                            </div>
-                                        </div>
-                                        <div class="mb-10">
-                                            <h5 class="">Hom many IPL season was organized so far?</h5>
-                                            <div class="d-flex">
-                                                <input id="question3 kt_share_earn_link_input" type="text" class="question3 form-control form-control-solid me-3 flex-grow-1" name="question3" />
-                                            </div>
-                                        </div>
-                                        <div class="mb-10">
-                                            <h5 class="">Which is the highest run scorer in IPL(all seasons)?</h5>
-                                            <div class="d-flex">
-                                                <input id="question4 kt_share_earn_link_input" type="text" class="question4 form-control form-control-solid me-3 flex-grow-1" name="question4" />
-                                            </div>
-                                        </div>
-                                        <div class="mb-10">
-                                            <h5 class="">When india was won the last icc trophies?</h5>
-                                            <div class="d-flex">
-                                                <input id="question5 kt_share_earn_link_input" type="text" class="question5 form-control form-control-solid me-3 flex-grow-1" name="question5" />
-                                            </div>
-                                        </div>
-                                        <div id="question_error"> </div>
-                                        <!-- <button name="user_submit_btn" class="user_submit_btn"> Submit </button> -->
-                                        <button name="user_submit_btn" id="user_submit_btn kt_modal_new_address_cancel" class="user_submit_btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">
-                                            <span class=" align-center justify-center indicator-label">Submit</span>
-                                        </button>
+<div class="">
+    <h3 id="complete_message" style="display: none;"> Quiz was completed by you. </h3>
+
+    <!-- questions -->
+    <form id="quizeForm" class="quizeForm  mt-10" method="post" action="<?php print site_url('UserController/insertUserData') ?>">
+        <div class="post flex  mw-lg-700px  m-xl-auto mt-20" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <div class="card ">
+                    <div class="card-body  ">
+                        <div class="card-px pt-10 pb-5">
+                            <div class="modal-body scroll-y pt-0 pb-15">
+                                <!--begin::Wrapper-->
+                                <div class="mw-lg-500px mx-auto">
+                                    <!--begin::Heading-->
+                                    <div class="mb-10 text-center">
+                                        <!--begin::Title-->
+                                        <h1 class="mb-3">Questions</h1>
+                                        <!--end::Title-->
                                     </div>
-                                    <!--end::Wrapper-->
+                                    <!--end::Heading-->
+                                    <!--begin::Input group-->
+                                    <div class="mb-10">
+                                        <h5> Which is Your favorite IPL team?</h5>
+                                        <div class="d-flex">
+                                            <input id="question1 kt_share_earn_link_input" type="text" class="question1 form-control form-control-solid me-3 flex-grow-1" name="question1" />
+                                        </div>
+                                    </div>
+                                    <!--end::Input group-->
+                                    <div class="mb-10">
+                                        <h5 class=""> Which is your favorite player?</h5>
+                                        <div class="d-flex">
+                                            <input id="question2 kt_share_earn_link_input" type="text" class="question2 form-control form-control-solid me-3 flex-grow-1" name="question2" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-10">
+                                        <h5 class="">Hom many IPL season was organized so far?</h5>
+                                        <div class="d-flex">
+                                            <input id="question3 kt_share_earn_link_input" type="text" class="question3 form-control form-control-solid me-3 flex-grow-1" name="question3" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-10">
+                                        <h5 class="">Which is the highest run scorer in IPL(all seasons)?</h5>
+                                        <div class="d-flex">
+                                            <input id="question4 kt_share_earn_link_input" type="text" class="question4 form-control form-control-solid me-3 flex-grow-1" name="question4" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-10">
+                                        <h5 class="">When india was won the last icc trophies?</h5>
+                                        <div class="d-flex">
+                                            <input id="question5 kt_share_earn_link_input" type="text" class="question5 form-control form-control-solid me-3 flex-grow-1" name="question5" />
+                                        </div>
+                                    </div>
+                                    <div id="question_error"> </div>
+                                    <!-- <button name="user_submit_btn" class="user_submit_btn"> Submit </button> -->
+                                    <button name="user_submit_btn" id="user_submit_btn kt_modal_new_address_cancel" class="user_submit_btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">
+                                        <span class=" align-center justify-center indicator-label">Submit</span>
+                                    </button>
                                 </div>
+                                <!--end::Wrapper-->
                             </div>
-
                         </div>
-                        <!--end::Card body-->
+
                     </div>
-                    <!--end::Card-->
-                    <!--begin::Modal - Share & Earn-->
-
-                    <!--end::Modal - Share & Earn-->
+                    <!--end::Card body-->
                 </div>
-                <!--end::Container-->
-            </div>
-        </form>
+                <!--end::Card-->
+                <!--begin::Modal - Share & Earn-->
 
-        <!-- Rank table -->
-        <div class="card  mx-xl-auto mt-10  mw-lg-900px   ">
-            <div class="card-header  ">
-                <h3 class="card-title"> <strong> Points Table</strong></h3>
+                <!--end::Modal - Share & Earn-->
             </div>
-            <div class="card-body py-3 ">
-                <div class="table-responsive ">
-                    <table class="rankTable table table-row-dashed table-row-gray-300 align-middle gs-0  gy-6" name="rankTable" id="rankTable rules_table">
-                        <thead id="table_head" class="table_head" name="table_head">
-                            <tr class="fw-bolder text-muted">
-                                <th class="min-w-100px">Rank</th>
-                                <th class="min-w-150px">Name</th>
-                                <th class="min-w-140px">Points</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody" class="tableBody" name="tableBody">
-                        </tbody>
-                    </table>
-                </div>
+            <!--end::Container-->
+        </div>
+    </form>
+
+    <!-- Rank table -->
+    <div class="card  mx-xl-auto mt-10  mw-lg-900px   ">
+        <div class="card-header  ">
+            <h3 class="card-title"> <strong> Points Table</strong></h3>
+        </div>
+        <div class="card-body py-3 ">
+            <div class="table-responsive ">
+                <table class="rankTable table table-row-dashed table-row-gray-300 align-middle gs-0  gy-6" name="rankTable" id="rankTable rules_table">
+                    <thead id="table_head" class="table_head" name="table_head">
+                        <tr class="fw-bolder text-muted">
+                            <th class="min-w-100px">Rank</th>
+                            <th class="min-w-150px">Name</th>
+                            <th class="min-w-140px">Points</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="tableBody" name="tableBody">
+                    </tbody>
+                </table>
             </div>
         </div>
-
-
     </div>
+
+
+</div>
 
 <script>
     $(document).ready(function() {
@@ -259,4 +261,3 @@
         })
     }
 </script>
-

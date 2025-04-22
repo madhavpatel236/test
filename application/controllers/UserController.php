@@ -32,13 +32,39 @@ class UserController extends CI_Controller
         $this->load->view('Register');
     }
 
+
     public function userHome()
     {
-        $data = "madhav";
-        $this->template->loadView('UserHome_template', 'Navbar');
+        // You can pass additional view data here
+        $viewData['name'] = "Madhav";
+
+        // Load 'UserHome' view into $body
+        // $body = $this->load->view('UserHome', $viewData );
+        // echo "<pre>";print_r($body);exit;
+
+        // Pass $body into the layout/template view
+        $this->template->loadView('UserHome_template', 'Navbar', $viewData);
         $this->template->loadView('UserHome_template', 'UserHome');
-        // $this->load->view('UserHome');
+
+        // $this->template->loadView('UserHome_template', 'UserHome', ['name' => 'Madhav']);
+
     }
+
+
+
+    // public function userHome()
+    // {
+    //     $data = "madhav";
+    //     // $this->template->loadView('UserHome_template', 'Navbar', $data);
+    //     // $this->template->loadView('UserHome_template', 'UserHome');
+
+    //     // $body = $this->load->view('UserHome', $data, true);
+    //     $this->template->loadView('UserHome_template', null,$data);
+
+    //     // $this->template->loadView('templates/UserHome_template', ['body' => $body]);
+
+    //     // $this->load->view('UserHome');
+    // }
 
     public function register()
     {

@@ -17,8 +17,8 @@
 </head>
 
 <body>
-    <div class="Navbar_Page bg-dark">
-        <?php print_r($body); ?>
+    <div class="Navbar_Page ">
+    <?php echo $body;  ?>
     </div>
 
 </body>
