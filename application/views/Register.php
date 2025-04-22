@@ -122,7 +122,7 @@
 
                                 </div>
                                 <!--end::Wrapper-->
-                                <span name="credential_error" class="credential_error" id="credential_error"> <?php var_dump(isset($_SESSION['credential_error'])); ?> </span> <br /> <br />
+                                <span name="credential_error" class="credential_error text-center text-danger" id="credential_error"> <?php if (isset($_SESSION['credential_error'])) echo ($_SESSION['credential_error']); ?> </span> <br /> <br />
                                 <input type="hidden" id="user_role" name="user_role" value="user" />
                             </div>
                             <!--end::Input group=-->

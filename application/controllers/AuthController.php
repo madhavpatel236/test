@@ -51,11 +51,10 @@ class AuthController extends CI_Controller
 
     public function register()
     {
-        if ($_SESSION['userEmailAlreadyPresent'] == "false") {
-            $_SESSION['credential_error'] = "User already present, please use different email address.";
-            $this->isValid = false;
-        }
+        // var_dump($_SESSION['credential_error']);
+        // exit;
         $this->load->view('Register');
+        unset($_SESSION['credential_error']);
     }
 
     public function auth()

@@ -77,6 +77,9 @@ class UserModel extends CI_Model
 
         if ($alreadyUser->num_rows() > 0) {
             $_SESSION['userEmailAlreadyPresent'] = false;
+            $_SESSION['credential_error'] = "Email already present, please use different once!!";
+            // var_dump($_SESSION['credential_error']);
+            // exit;
             redirect('AuthController/register');
             // return ;
         }

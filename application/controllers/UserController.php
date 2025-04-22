@@ -92,9 +92,6 @@ class UserController extends CI_Controller
             $this->errors['password_error'] = "password is reqired";
             $this->isValid = false;
         }
-
-        // var_dump(($_SESSION['userEmailAlreadyPresent']));
-        // exit;
         
         if ($this->isValid == false) {
             // var_dump($this->role); exit;
