@@ -84,7 +84,7 @@
                         <div class="text-center">
                             <!--begin::Submit button-->
                             <!-- <button class="submit_login"> Submit </button> -->
-                            <span name="credential_error" class="credential_error text-danger" id="credential_error"></span> <br /> <br />
+                            <span name="credential_error" class="credential_error text-danger" id="credential_error"> <?php if(isset($_SESSION['credential_error'])) echo $_SESSION['credential_error'];  ?> </span> <br /> <br />
                             <button type="submit" id="submit_login kt_sign_in_submit" class="submit_login btn btn-lg btn-primary w-100 mb-5">
                                 Submit
                             </button>
@@ -122,11 +122,11 @@
             var error = false;
             // alert(password); exit;
             if (email.trim() == "") {
-                $("#email_error").html("Please enter a email.");
+                $(".email_error").text("Please enter a email.");
                 error = true;
             }
             if (password.trim() == "") {
-                $("#password_error").html("Please enter a passoword.");
+                $(".password_error").text("Please enter a passoword.");
                 error = true;
             }
             if (error == true) {

@@ -15,10 +15,25 @@ class UserModel extends CI_Model
     {
         $isUserPresent = $this->db->where(["Email" => $email]);
         $data = $this->db->get('auth');
+
+        unset($_SESSION['credential_error']);
+
+        if ($data->num_rows() == 0) {
+            // $_SESSION[''];
+            $_SESSION['credential_error'] = "Credentials was not correct, please check!!";
+            redirect('AuthController/view');
+        }
+        unset($_SESSION['credential_error']);
         $userPasswordDB = $data->result()[0]->Password;
         $userEmailDB = $data->result()[0]->Email;
         $userRoleDB = $data->result()[0]->Role;
         $varifyPassword = password_verify($password, $userPasswordDB);
+
+        // var_dump(($varifyPassword));exit;
+        if ($varifyPassword == false) {
+            $_SESSION['credential_error'] = "Credentials was not correct, please check!!";
+            redirect('AuthController/view');
+        }
 
         // var_dump(password_verify($password, $userPasswordDB ));
 
@@ -53,16 +68,19 @@ class UserModel extends CI_Model
 
     public function registerUser($name, $email, $password, $role)
     {
-        // var_dump($email); exit;
+        // var_dump("email"); exit;
 
         $this->db->select('Email');
         $this->db->where(["Email" => $email]);
         $alreadyUser = $this->db->get('auth');
-        // var_dump($alreadyUser->num_rows()); exit;
+
+
         if ($alreadyUser->num_rows() > 0) {
             $_SESSION['userEmailAlreadyPresent'] = false;
-            return false;
+            redirect('AuthController/register');
+            // return ;
         }
+        // var_dump($_SESSION['userEmailAlreadyPresent']); exit;
 
 
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);

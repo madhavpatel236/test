@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-
 </head>
 
 <body id="kt_body" class="bg-body ">
@@ -86,7 +85,7 @@
                                     <label for="register_name" class="form-label fw-bolder text-dark fs-6">First Name</label>
                                     <!-- <input type="text" class="register_name" id="register_name" name="register_name" /> -->
                                     <input class="register_name form-control form-control-lg form-control-solid" type="text" placeholder="" name="register_name" id="register_name" />
-                                    <span name="name_error" id="name_error"></span> <br /> <br />
+                                    <span name="name_error" class="name_error" id="name_error"></span> <br /> <br />
                                     <!-- <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" autocomplete="off" /> -->
                                 </div>
                                 <!--end::Col-->
@@ -96,7 +95,7 @@
                             <div class="fv-row mb-7">
                                 <label for="register_email" class="form-label fw-bolder text-dark fs-6">Email</label>
                                 <input class="register_email form-control form-control-lg form-control-solid" type="email" placeholder="" name="register_email" id="register_email" />
-                                <span name="email_error" id="email_error"></span> <br /> <br />
+                                <span name="email_error" class="email_error" id="email_error"></span> <br /> <br />
 
                             </div>
                             <!--end::Input group-->
@@ -112,18 +111,18 @@
                                         <!-- <input type="password" class="register_password" id="register_password" name="register_password" /> -->
 
                                         <input class="register_password form-control form-control-lg form-control-solid" type="password" placeholder="" name="register_password" id="register_password" />
-                                        <span name="password_error" id="password_error"></span> <br /> <br />
 
                                         <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                                             <i class="bi bi-eye-slash fs-2"></i>
                                             <i class="bi bi-eye fs-2 d-none"></i>
                                         </span>
                                     </div>
+                                    <span name="password_error" class="password_error" id="password_error"></span> <br /> <br />
                                     <!--end::Input wrapper-->
 
                                 </div>
                                 <!--end::Wrapper-->
-                                <span name="credential_error" class="credential_error" id="credential_error"></span> <br /> <br />
+                                <span name="credential_error" class="credential_error" id="credential_error"> <?php var_dump(isset($_SESSION['credential_error'])); ?> </span> <br /> <br />
                                 <input type="hidden" id="user_role" name="user_role" value="user" />
                             </div>
                             <!--end::Input group=-->
@@ -162,24 +161,15 @@
         <!--end::Authentication - Sign-up-->
     </div>
     <!--end::Main-->
-    <script>
-        var hostUrl = "assets/";
-    </script>
-    <!--begin::Javascript-->
-    <!--begin::Global Javascript Bundle(used by all pages)-->
-    <script src="assets/plugins/global/plugins.bundle.js"></script>
-    <script src="assets/js/scripts.bundle.js"></script>
-    <!--end::Global Javascript Bundle-->
-    <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="assets/js/custom/authentication/sign-up/general.js"></script>
-    <!--end::Page Custom Javascript-->
-    <!--end::Javascript-->
+
 </body>
 
 
 <script>
     $(document).ready(function() {
-        $('#register_form').on('submit', function(e) {
+        $('.register_form').on('submit', function(e) {
+            var_dump("email");
+            exit;
             var email = $('#register_email').val();
             var password = $('#register_password').val();
             var name = $('#register_name').val();

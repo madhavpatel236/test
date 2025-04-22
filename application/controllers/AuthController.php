@@ -41,6 +41,7 @@ class AuthController extends CI_Controller
     public function view()
     {
         $this->load->view('Login');
+        unset($_SESSION['credential_error']);
     }
 
     public function userHome()
@@ -50,6 +51,10 @@ class AuthController extends CI_Controller
 
     public function register()
     {
+        if ($_SESSION['userEmailAlreadyPresent'] == "false") {
+            $_SESSION['credential_error'] = "User already present, please use different email address.";
+            $this->isValid = false;
+        }
         $this->load->view('Register');
     }
 
@@ -66,6 +71,8 @@ class AuthController extends CI_Controller
             $this->errors['password_error'] = "password is reqired";
             $this->isValid = false;
         }
+        // var_dump($_SESSION['isUserPresentAlready']);
+        // exit;
         // if ($_SESSION['isUserPresentAlready'] == true) {
         //     $this->errors['general_error'] = "User already present, please use different email address.";
         //     $this->isValid = false;

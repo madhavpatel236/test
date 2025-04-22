@@ -33,6 +33,11 @@ class UserController extends CI_Controller
         $this->load->view('Register');
     }
 
+    public function loginPage()
+    {
+        $this->load->view('Login');
+    }
+
 
     public function userHome()
     {
@@ -88,10 +93,9 @@ class UserController extends CI_Controller
             $this->isValid = false;
         }
 
-        // if ($_SESSION['userEmailAlreadyPresent'] == false) {
-        //     $this->errors['general_error'] = "User already present, please use different email address.";
-        //     $this->isValid = false;
-        // }
+        // var_dump(($_SESSION['userEmailAlreadyPresent']));
+        // exit;
+        
         if ($this->isValid == false) {
             // var_dump($this->role); exit;
             // $this->load->view('Register', $this->errors);
