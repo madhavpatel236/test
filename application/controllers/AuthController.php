@@ -1,16 +1,14 @@
 <?php
 
 defined('BASEPATH') or exit('No direct script access allowed');
-// session_start();
-// $_SESSION['currentUserEmailID'];
-// $_SESSION['userRole'];
-// $_SESSION['userEmailAlreadyPresent'] = true;
 /**
  * @property UserModel $UserModel
  * @property CI_Input $input
  * @property Template $template
  * @property CI_Session $session
  */
+
+
 class AuthController extends CI_Controller
 {
     // public $userModelObj;
@@ -27,33 +25,32 @@ class AuthController extends CI_Controller
         $this->load->database('default');
         $this->load->helper('url');
 
+        // $currentEmail = $this->session->userdata('currentUserEmailID');
+        // $currentRole = $this->session->userdata('userRole');
+
+        // isset($currentEmail) ? $userEmail = $currentEmail  : "";
+        // isset($currentRole) ? $userRole = $currentRole  : "";
+        // if (isset($userEmail) && isset($userRole) &&  $userRole == 'admin') {
+        //     var_dump(($userRole));
+        //     exit;
+        //     redirect('AuthController/adminView');
+        // } elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
+        //     redirect('UserController/userHome');
+        // } else {
+        //     redirect('AuthController/view');
+        // }
 
         // $this->session->set_userdata('currentUserEmailID', );
         // $this->session->set_userdata('userRole', 'admin');
         // $this->session->userdata('currentUserEmailID');
 
 
-        $currentEmail = $this->session->userdata('currentUserEmailID');
-        $currentRole = $this->session->userdata('userRole');
 
-        isset($currentEmail) ? $userEmail = $currentEmail  : "";
-        isset($currentRole) ? $userRole = $currentRole  : "";
-
-        var_dump(isset($userEmail));
-        // var_dump(isset($userEmail) && isset($userRole) && $userRole == 'user');
-        // exit;
-
-        if (isset($userEmail) && isset($userRole) &&  $userRole == 'admin') {
-            site_url('AuthController/adminView');
-        } elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
-            site_url('UserController/userHome');
-        } else {
-            site_url('AuthController/view');
-        }
     }
 
     public function view()
     {
+        // var_dump('AuthCon'); exit;
         $this->template->loadView('UserHome_template', 'Login');
         unset($_SESSION['credential_error']);
     }

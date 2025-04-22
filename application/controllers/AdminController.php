@@ -17,22 +17,22 @@ class AdminController extends CI_Controller
         $this->load->model('UserModel');
         $this->load->library('session');
 
-        $currentEmail = $this->session->userdata('currentUserEmailID');
+        // $currentEmail = $this->session->userdata('currentUserEmailID');
         $currentRole = $this->session->userdata('userRole');
 
         isset($currentEmail) ? $userEmail = $currentEmail  : "";
         isset($currentRole) ? $userRole = $currentRole  : "";
 
-        // var_dump(isset($userEmail));
-        // var_dump(isset($userEmail) && isset($userRole) && $userRole == 'user');
-        // exit;
+        // var_dump(($userEmail)); exit;
+        //  var_dump(isset($userEmail) && isset($userRole) && $userRole == 'user');
+        //  exit;
 
         if (isset($userEmail) && isset($userRole) &&  $userRole == 'admin') {
-            site_url('AuthController/adminView');
+            redirect('AuthController/adminView');
         } elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
-            site_url('UserController/userHome');
+            redirect('UserController/userHome');
         } else {
-            site_url('AuthController/view');
+            redirect('AuthController/view');
         }
     }
 

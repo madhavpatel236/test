@@ -27,7 +27,7 @@ class UserController extends CI_Controller
         // $this->userModelObj = new UserModel();
         // $this->load->database('default');
 
-        // $this->session->set_userdata('currentUserEmailID', 'scd');
+        // $this->session->set_userdata('currentUserEmailID', $this->email);
         // $this->session->set_userdata('userRole', 'admin');
         $currentEmail = $this->session->userdata('currentUserEmailID');
         $currentRole = $this->session->userdata('userRole');
@@ -36,15 +36,15 @@ class UserController extends CI_Controller
         isset($currentRole) ? $userRole = $currentRole  : "";
 
         // var_dump(($userEmail)); exit;
-        // var_dump(isset($userEmail) && isset($userRole) && $userRole == 'user');
-        // exit;
+        //  var_dump(isset($userEmail) && isset($userRole) && $userRole == 'user');
+        //  exit;
 
         if (isset($userEmail) && isset($userRole) &&  $userRole == 'admin') {
-            site_url('AuthController/adminView');
+            redirect('AuthController/adminView');
         } elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
-            site_url('UserController/userHome');
+            redirect('UserController/userHome');
         } else {
-            site_url('AuthController/view');
+            redirect('AuthController/view');
         }
     }
 
@@ -61,15 +61,16 @@ class UserController extends CI_Controller
 
     public function userHome()
     {
+        // var_dump('sdc'); exit;
         // You can pass additional view data here
-        $viewData['name'] = "Madhav";
+        // $viewData['name'] = "Madhav";
 
         // Load 'UserHome' view into $body
         // $body = $this->load->view('UserHome', $viewData );
         // echo "<pre>";print_r($body);exit;
 
         // Pass $body into the layout/template view
-        $this->template->loadView('UserHome_template', 'Navbar', $viewData);
+        $this->template->loadView('UserHome_template', 'Navbar');
         $this->template->loadView('UserHome_template', 'UserHome');
 
         // $this->template->loadView('UserHome_template', 'UserHome', ['name' => 'Madhav']);
