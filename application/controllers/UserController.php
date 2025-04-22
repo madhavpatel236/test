@@ -35,17 +35,19 @@ class UserController extends CI_Controller
         isset($currentEmail) ? $userEmail = $currentEmail  : "";
         isset($currentRole) ? $userRole = $currentRole  : "";
 
-        // var_dump(($userEmail)); exit;
+        // var_dump($userRole); exit;
         //  var_dump(isset($userEmail) && isset($userRole) && $userRole == 'user');
         //  exit;
 
-        if (isset($userEmail) && isset($userRole) &&  $userRole == 'admin') {
-            redirect('AuthController/adminView');
-        } elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
-            redirect('UserController/userHome');
-        } else {
-            redirect('AuthController/view');
-        }
+        // if (isset($userEmail) && isset($userRole) &&  $userRole == 'admin') {
+        //     redirect('AdminController/adminView');
+        // } 
+        // elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
+        //     redirect('UserController/userHome');
+        // }
+        // if($userRole != "user") {
+        //     redirect('AuthController/view');
+        // }
     }
 
     public function view()
@@ -53,10 +55,10 @@ class UserController extends CI_Controller
         $this->template->loadView('UserHome_template', 'Register');
     }
 
-    public function loginPage()
-    {
-        $this->template->loadView('UserHome_template', 'Login');
-    }
+    // public function loginPage()
+    // {
+    //     $this->template->loadView('UserHome_template', 'Login');
+    // }
 
 
     public function userHome()
@@ -70,6 +72,7 @@ class UserController extends CI_Controller
         // echo "<pre>";print_r($body);exit;
 
         // Pass $body into the layout/template view
+        // var_dump("hiii"); exit;
         $this->template->loadView('UserHome_template', 'Navbar');
         $this->template->loadView('UserHome_template', 'UserHome');
 
@@ -117,7 +120,7 @@ class UserController extends CI_Controller
         if ($this->isValid == false) {
             // var_dump($this->role); exit;
             // $this->load->view('Register', $this->errors);
-            redirect('AuthController/register');
+            redirect('UserController/view');
         }
 
 

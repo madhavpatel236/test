@@ -2398,8 +2398,8 @@
                     <div class="d-flex align-items-center ms-1 ms-lg-3">
                         <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-80px h-md-40px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
                             <span data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-lg-1">
-                                <form method="post" action="<?php echo site_url('AuthController/view'); ?>" id="logoutForm">
-                                    <span class="menu-link py-3 logout_btn" onclick="document.getElementById('logoutForm').submit();">
+                                <form method="post" action="<?php ; ?>" id="logoutForm">
+                                    <span class="menu-link py-3 logout_btn" ">
                                         <span class="menu-title text-white">Logout</span>
                                     </span>
                                     <input type="hidden" name="logout_btn" value="Logout" />

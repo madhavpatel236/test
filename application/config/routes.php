@@ -5,11 +5,12 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['default_controller'] = 'AuthController/view';
 
-$route['AuthController/AdminHome'] = 'AuthController/AdminHome';
+// $route['AuthController/AdminHome'] = 'AuthController/AdminHome';
 $route['AuthController/view'] = 'AuthController/view';
-$route['AuthController/UserHome'] = 'AuthController/UserHome';
-$route['AuthController/userView'] = 'AuthController/userView';
-$route['AuthController/register'] = 'AuthController/register';
+$route['AuthController/logout'] = 'AuthController/logout';
+// $route['AuthController/UserHome'] = 'AuthController/UserHome';
+// $route['AuthController/userView'] = 'AuthController/userView';
+// $route['AuthController/register'] = 'AuthController/register';
 
 $route['AdminController/addRules'] = 'AdminController/addRules';
 $route['AdminController/showRulesTable'] = 'AdminController/showRulesTable';

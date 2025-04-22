@@ -4,6 +4,7 @@
  * @property UserModel $UserModel
  * @property CI_Input $input
  * @property CI_Session $session
+ * @property Template $template
 
  */
 
@@ -16,6 +17,8 @@ class AdminController extends CI_Controller
         $this->load->helper('url');
         $this->load->model('UserModel');
         $this->load->library('session');
+        $this->load->library('template');
+
 
         // $currentEmail = $this->session->userdata('currentUserEmailID');
         $currentRole = $this->session->userdata('userRole');
@@ -23,17 +26,24 @@ class AdminController extends CI_Controller
         isset($currentEmail) ? $userEmail = $currentEmail  : "";
         isset($currentRole) ? $userRole = $currentRole  : "";
 
-        // var_dump(($userEmail)); exit;
+        // var_dump(!($userRole == "admin")); exit;
         //  var_dump(isset($userEmail) && isset($userRole) && $userRole == 'user');
         //  exit;
 
-        if (isset($userEmail) && isset($userRole) &&  $userRole == 'admin') {
-            redirect('AuthController/adminView');
-        } elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
-            redirect('UserController/userHome');
-        } else {
-            redirect('AuthController/view');
-        }
+        // if (isset($userEmail) && isset($userRole) &&  $userRole == 'admin') {
+        //     redirect('AdminController/adminView');
+        // } elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
+        //     redirect('UserController/userHome');
+        // } 
+        // if ($userRole != "admin") {
+        //     redirect('AuthController/view');
+        // }
+    }
+
+    public function adminView()
+    {
+        $this->template->loadView('UserHome_template', 'Navbar');
+        $this->template->loadView('UserHome_template', 'AdminHome');
     }
 
     public function addRules()
@@ -70,5 +80,14 @@ class AdminController extends CI_Controller
         $numberOfUser = $this->input->post('UserNumbers');
         $points = $this->input->post('Points');
         $this->UserModel->updateRules($id, $numberOfUser, $points);
+    }
+
+    public function showUserRankTable()
+    {
+        // var_dump("dcfv"); exit;
+        $data = $this->UserModel->userRankTable();
+        // print_r($data); exit;
+        //  $data;
+        echo json_encode($data);
     }
 }

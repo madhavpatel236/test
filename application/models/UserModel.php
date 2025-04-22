@@ -47,7 +47,7 @@ class UserModel extends CI_Model
             $this->userEmail = $this->session->userdata('currentUserEmailID');
             // $this->userEmail =  $_SESSION['currentUserEmailID'];
             // var_dump( $_SESSION['currentUserEmailID']); exit;
-            redirect('AuthController/adminView');
+            redirect('AdminController/adminView');
         } else {
             // $_SESSION['currentUserEmailID'] = null;
             // $_SESSION['userRole'] = null;
@@ -96,7 +96,7 @@ class UserModel extends CI_Model
             // $_SESSION['credential_error'] = "Email already present, please use different once!!";
             // var_dump($_SESSION['credential_error']);
             // exit;
-            redirect('AuthController/register');
+            redirect('UserController/view');
             // return ;
         }
         // var_dump($_SESSION['userEmailAlreadyPresent']); exit;

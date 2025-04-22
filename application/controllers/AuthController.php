@@ -25,47 +25,60 @@ class AuthController extends CI_Controller
         $this->load->database('default');
         $this->load->helper('url');
 
-        // $currentEmail = $this->session->userdata('currentUserEmailID');
-        // $currentRole = $this->session->userdata('userRole');
+        $currentEmail = $this->session->userdata('currentUserEmailID');
+        $currentRole = $this->session->userdata('userRole');
 
-        // isset($currentEmail) ? $userEmail = $currentEmail  : "";
-        // isset($currentRole) ? $userRole = $currentRole  : "";
+        isset($currentEmail) ? $userEmail = $currentEmail  : "";
+        isset($currentRole) ? $userRole = $currentRole  : "";
+
+
+        // var_dump(($userEmail));
+        // var_dump(isset($userRole));
+        // var_dump(isset($userEmail) && isset($userRole) &&  $userRole == 'user');
+        // exit;
+
         // if (isset($userEmail) && isset($userRole) &&  $userRole == 'admin') {
-        //     var_dump(($userRole));
-        //     exit;
-        //     redirect('AuthController/adminView');
-        // } elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
+        //     redirect('AdminController/adminView');
+        // }
+        // elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
         //     redirect('UserController/userHome');
-        // } else {
-        //     redirect('AuthController/view');
         // }
 
-        // $this->session->set_userdata('currentUserEmailID', );
+        // $this->session->set_userdata('currentUserEmailID',);
         // $this->session->set_userdata('userRole', 'admin');
         // $this->session->userdata('currentUserEmailID');
-
-
-
     }
 
     public function view()
     {
         // var_dump('AuthCon'); exit;
+        // $this->session->unset_userdata('currentUserEmailID');
+        // $this->session->unset_userdata('userRole');
         $this->template->loadView('UserHome_template', 'Login');
-        unset($_SESSION['credential_error']);
+        $this->session->unset_userdata('credential_error');
+        // unset($_SESSION['credential_error']);
     }
 
-    public function userHome()
-    {
-        // $this->load->view('UserHome');
-        $this->template->loadView('UserHome_template', 'UserHome');
-    }
+    // public function logout()
+    // {
+    //     // var_dump('hiii'); exit;
+    //     $this->session->unset_userdata('currentUserEmailID');
+    //     $this->session->unset_userdata('userRole');
+    //     $this->template->loadView('UserHome_template', 'Login');
+    //     $this->session->unset_userdata('credential_error');
+    // }
 
-    public function register()
-    {
-        $this->template->loadView('UserHome_template', 'Register');
-        unset($_SESSION['credential_error']);
-    }
+    // public function userHome()
+    // {
+    //     // $this->load->view('UserHome');
+    //     $this->template->loadView('UserHome_template', 'UserHome');
+    // }
+
+    // public function register()
+    // {
+    //     $this->template->loadView('UserHome_template', 'Register');
+    //     unset($_SESSION['credential_error']);
+    // }
 
     public function adminView()
     {
@@ -109,23 +122,20 @@ class AuthController extends CI_Controller
         $this->UserModel->authentication($this->email, $this->password);
     }
 
+    // public function reloadPageChack()
+    // {
+    //     // var_dump('hii');
+    //     // exit;
+    //     $userEmail = $_SESSION['currentUserEmailID'];
+    //     $userRole = $_SESSION['userRole'];
+    //     // var_dump($userRole);
 
-
-
-    public function reloadPageChack()
-    {
-        var_dump('hii');
-        exit;
-        $userEmail = $_SESSION['currentUserEmailID'];
-        $userRole = $_SESSION['userRole'];
-        // var_dump($userRole);
-
-        if ($userEmail &&  $userRole == 'admin') {
-            site_url('AuthController/adminView');
-        } elseif ($userEmail &&  $userRole == 'user') {
-            site_url('UserController/userHome');
-        } else {
-            site_url('AuthController/view');
-        }
-    }
+    //     if ($userEmail &&  $userRole == 'admin') {
+    //         site_url('AdminController/adminView');
+    //     } elseif ($userEmail &&  $userRole == 'user') {
+    //         site_url('UserController/userHome');
+    //     } else {
+    //         site_url('AuthController/view');
+    //     }
+    // }
 }

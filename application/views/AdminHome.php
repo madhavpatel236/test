@@ -166,7 +166,6 @@
     </div> -->
 
 
-
 <script>
     showRulesTable()
     showRankTable();
@@ -268,7 +267,7 @@
 
     function showRankTable() {
         $.ajax({
-            url: "<?php print site_url("UserController/showUserRankTable") ?>",
+            url: "<?php print site_url("AdminController/showUserRankTable") ?>",
             type: "GET",
             data: {},
             success: function(res) {
