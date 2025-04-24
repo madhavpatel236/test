@@ -7,7 +7,7 @@ $route['default_controller'] = 'AuthController/view';
 
 // $route['AuthController/AdminHome'] = 'AuthController/AdminHome';
 $route['AuthController/view'] = 'AuthController/view';
-$route['AuthController/logout'] = 'AuthController/logout';
+$route['AuthController/logout'] = 'UserController/logout';
 // $route['AuthController/UserHome'] = 'AuthController/UserHome';
 // $route['AuthController/userView'] = 'AuthController/userView';
 // $route['AuthController/register'] = 'AuthController/register';

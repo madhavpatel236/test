@@ -35,9 +35,9 @@ class AdminController extends CI_Controller
         // } elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
         //     redirect('UserController/userHome');
         // } 
-        // if ($userRole != "admin") {
-        //     redirect('AuthController/view');
-        // }
+        if ($userRole != "admin") {
+            redirect('AuthController/view');
+        }
     }
 
     public function adminView()

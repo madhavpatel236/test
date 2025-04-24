@@ -54,19 +54,13 @@ class AuthController extends CI_Controller
         // var_dump('AuthCon'); exit;
         // $this->session->unset_userdata('currentUserEmailID');
         // $this->session->unset_userdata('userRole');
+
         $this->template->loadView('UserHome_template', 'Login');
         $this->session->unset_userdata('credential_error');
         // unset($_SESSION['credential_error']);
     }
 
-    // public function logout()
-    // {
-    //     // var_dump('hiii'); exit;
-    //     $this->session->unset_userdata('currentUserEmailID');
-    //     $this->session->unset_userdata('userRole');
-    //     $this->template->loadView('UserHome_template', 'Login');
-    //     $this->session->unset_userdata('credential_error');
-    // }
+
 
     // public function userHome()
     // {

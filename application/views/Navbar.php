@@ -2396,18 +2396,18 @@
 
                     <!--begin::Quick links-->
                     <div class="d-flex align-items-center ms-1 ms-lg-3">
-                        <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-80px h-md-40px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                            <span data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-lg-1">
-                                <form method="post" action="<?php ; ?>" id="logoutForm">
-                                    <span class="menu-link py-3 logout_btn" ">
-                                        <span class="menu-title text-white">Logout</span>
-                                    </span>
-                                    <input type="hidden" name="logout_btn" value="Logout" />
-                                </form>
-
-                            </span>
-                            <!--end::Svg Icon-->
-                        </div>
+                        <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-80px h-md-40px"  data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                            <!-- <span data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-lg-1"> -->
+                            <!-- <form id="logoutForm" > -->
+                            <span class="menu-link py-3" ">
+                        </span>
+                        <!-- <input type="hidden" name="logout_btn" value="Logout" /> -->
+                    <!-- </form> -->
+                    
+                <!-- </span> -->
+                <!--end::Svg Icon-->
+            </div>
+            <!-- <button id="logout_btn" class="logout_btn ">Logout</button> -->
 
                     </div>
                     <!--end::Quick links-->
@@ -2605,3 +2605,26 @@
 </div>
 <!--begin::Container-->
 <!--end::Container-->
+<button id="logout_btn" class="logout_btn ">Logout</button>
+
+<script>
+    $('#logout_btn').on('click', function() {
+        // alert(' sv'); debugger;
+  
+
+
+    })
+
+    // 
+    // $(document).ready(function() {
+    //     $('#logout_btn').on('click', function() {
+    //         $.ajax({
+    //             type: 'GET',
+    //             success: function(res) {
+    //                 // alert(res);
+
+    //             }
+    //         })
+    //     })
+    // })
+</script>

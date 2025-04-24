@@ -45,14 +45,25 @@ class UserController extends CI_Controller
         // elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
         //     redirect('UserController/userHome');
         // }
-        // if($userRole != "user") {
-        //     redirect('AuthController/view');
-        // }
+        if ($userRole != "user") {
+            redirect('AuthController/view');
+        }
     }
 
     public function view()
     {
         $this->template->loadView('UserHome_template', 'Register');
+    }
+
+    public function logout()
+    {
+        // var_dump('svfdv');
+        // exit;
+        $this->session->unset_userdata('currentUserEmailID');
+        $this->session->unset_userdata('userRole');
+        // redirect('AuthController/view'); 
+        $this->session->unset_userdata('credential_error');
+        // $this->template->loadView('UserHome_template', 'Login');
     }
 
     // public function loginPage()
@@ -72,7 +83,8 @@ class UserController extends CI_Controller
         // echo "<pre>";print_r($body);exit;
 
         // Pass $body into the layout/template view
-        // var_dump("hiii"); exit;
+        // $Click = $this->input->post('#logout_btn');
+        // var_dump(isset($Click)); 
         $this->template->loadView('UserHome_template', 'Navbar');
         $this->template->loadView('UserHome_template', 'UserHome');
 
