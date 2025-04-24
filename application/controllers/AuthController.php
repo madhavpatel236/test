@@ -55,9 +55,14 @@ class AuthController extends CI_Controller
         // $this->session->unset_userdata('currentUserEmailID');
         // $this->session->unset_userdata('userRole');
 
-        $this->template->loadView('UserHome_template', 'Login');
+        $this->template->loadView('UserHome_template', ['Login']);
         $this->session->unset_userdata('credential_error');
         // unset($_SESSION['credential_error']);
+    }
+
+    public function register()
+    {
+        $this->template->loadView('UserHome_template', ['Register']);
     }
 
 
@@ -76,8 +81,8 @@ class AuthController extends CI_Controller
 
     public function adminView()
     {
-        $this->template->loadView('UserHome_template', 'Navbar');
-        $this->template->loadView('UserHome_template', 'AdminHome');
+        $this->template->loadView('UserHome_template', ['Navbar', 'AdminHome']);
+        // $this->template->loadView('UserHome_template', 'AdminHome');
     }
 
     // public function userView()

@@ -42,8 +42,8 @@ class AdminController extends CI_Controller
 
     public function adminView()
     {
-        $this->template->loadView('UserHome_template', 'Navbar');
-        $this->template->loadView('UserHome_template', 'AdminHome');
+        $this->template->loadView('UserHome_template', ['Navbar','AdminHome']);
+        // $this->template->loadView('UserHome_template', 'AdminHome');
     }
 
     public function addRules()

@@ -1,5 +1,3 @@
-
-
 <div id="kt_header" class="header bg-dark align-items-stretch" data-kt-sticky="true" data-kt-sticky-name="header" data-kt-sticky-offset="{default: '200px', lg: '300px'}">
     <!--begin::Container-->
     <div class="container-xxl d-flex align-items-center">
@@ -2396,18 +2394,18 @@
 
                     <!--begin::Quick links-->
                     <div class="d-flex align-items-center ms-1 ms-lg-3">
-                        <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-80px h-md-40px"  data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                        <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-80px h-md-40px" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
                             <!-- <span data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-lg-1"> -->
                             <!-- <form id="logoutForm" > -->
                             <span class="menu-link py-3" ">
                         </span>
-                        <!-- <input type="hidden" name="logout_btn" value="Logout" /> -->
-                    <!-- </form> -->
-                    
-                <!-- </span> -->
-                <!--end::Svg Icon-->
-            </div>
-            <!-- <button id="logout_btn" class="logout_btn ">Logout</button> -->
+                        <!-- <input type=" hidden" name="logout_btn" value="Logout" /> -->
+                            <!-- </form> -->
+
+                            <!-- </span> -->
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!-- <button id="logout_btn" class="logout_btn ">Logout</button> -->
 
                     </div>
                     <!--end::Quick links-->
@@ -2607,24 +2605,13 @@
 <!--end::Container-->
 <button id="logout_btn" class="logout_btn ">Logout</button>
 
+
+
 <script>
-    $('#logout_btn').on('click', function() {
-        // alert(' sv'); debugger;
-  
-
-
-    })
-
-    // 
-    // $(document).ready(function() {
-    //     $('#logout_btn').on('click', function() {
-    //         $.ajax({
-    //             type: 'GET',
-    //             success: function(res) {
-    //                 // alert(res);
-
-    //             }
-    //         })
-    //     })
-    // })
+    $("#logout_btn").on("click", function() {
+        window.location.replace(
+            "http://localhost/CIGame/index.php/UserController/logout"
+        );
+        // header("Location: ../controller/UserController");
+    });
 </script>

@@ -24,6 +24,7 @@ class UserController extends CI_Controller
         $this->load->model('UserModel');
         $this->load->library('template');
         $this->load->library('session');
+        $this->load->library('javascript');
         // $this->userModelObj = new UserModel();
         // $this->load->database('default');
 
@@ -45,14 +46,17 @@ class UserController extends CI_Controller
         // elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
         //     redirect('UserController/userHome');
         // }
-        if ($userRole != "user") {
-            redirect('AuthController/view');
-        }
+        // if ($userRole != "user") {
+        //     redirect('AuthController/view');
+        // }
+        // if ($userRole != "user") {
+        //     redirect('AuthController/view');
+        // }
     }
 
     public function view()
     {
-        $this->template->loadView('UserHome_template', 'Register');
+        $this->template->loadView('UserHome_template', ['Register']);
     }
 
     public function logout()
@@ -61,7 +65,7 @@ class UserController extends CI_Controller
         // exit;
         $this->session->unset_userdata('currentUserEmailID');
         $this->session->unset_userdata('userRole');
-        // redirect('AuthController/view'); 
+        redirect('AuthController/view');
         $this->session->unset_userdata('credential_error');
         // $this->template->loadView('UserHome_template', 'Login');
     }
@@ -85,8 +89,10 @@ class UserController extends CI_Controller
         // Pass $body into the layout/template view
         // $Click = $this->input->post('#logout_btn');
         // var_dump(isset($Click)); 
-        $this->template->loadView('UserHome_template', 'Navbar');
-        $this->template->loadView('UserHome_template', 'UserHome');
+        // $this->template->loadView('UserHome_template', 'Navbar');
+        $this->template->loadView('UserHome_template', ['Navbar', 'UserHome']);
+
+        // $this->template->loadView('UserHome_template', 'UserHome');
 
         // $this->template->loadView('UserHome_template', 'UserHome', ['name' => 'Madhav']);
 

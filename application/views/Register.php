@@ -1,26 +1,4 @@
-<?php
 
-
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
-    <link href="<?= base_url('assets/plugins/global/plugins.bundle.css') ?>" rel="stylesheet" />
-    <link href="<?= base_url('assets/css/style.bundle.css') ?>" rel="stylesheet" />
-    <script src="<?= base_url('assets/plugins/global/plugins.bundle.js') ?>"></script>
-    <script src="<?= base_url('assets/js/scripts.bundle.js') ?>"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-</head>
-
-<body id="kt_body" class="bg-body ">
     <!-- 
 <form method="post" id="register_form" action="<?php echo site_url('UserController/register'); ?>">
         <span for="register_name"> Name </span>
@@ -121,7 +99,7 @@
                                 <!-- <button class="submit_login"> Submit </button> -->
                                 <div class="text-center">
                                     <!--begin::Submit button-->
-                                    <button type="submit" name="submit_login" id="submit_login kt_sign_in_submit" class="submit_login btn btn-lg btn-primary w-100 mb-5">
+                                    <button type="submit" name="submit_register" id="submit_register kt_sign_in_submit" class="submit_register btn btn-lg btn-primary w-100 mb-5">
                                         Submit
                                     </button>
                                     <!--end::Submit button-->
@@ -151,8 +129,6 @@
         <!--end::Authentication - Sign-up-->
     </div>
     <!--end::Main-->
-
-</body>
 
 
 <script>
