@@ -25,11 +25,11 @@ class AuthController extends CI_Controller
         $this->load->database('default');
         $this->load->helper('url');
 
-        $currentEmail = $this->session->userdata('currentUserEmailID');
-        $currentRole = $this->session->userdata('userRole');
+        // $currentEmail = $this->session->userdata('currentUserEmailID');
+        // $currentRole = $this->session->userdata('userRole');
 
-        isset($currentEmail) ? $userEmail = $currentEmail  : "";
-        isset($currentRole) ? $userRole = $currentRole  : "";
+        // isset($currentEmail) ? $userEmail = $currentEmail  : "";
+        // isset($currentRole) ? $userRole = $currentRole  : "";
 
 
         // var_dump(($userEmail));

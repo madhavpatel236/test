@@ -64,6 +64,7 @@ class AdminController extends CI_Controller
     public function deleteRule()
     {
         $id = $this->input->post('Id');
+        // var_dump($id); exit;
         return $this->UserModel->deleteRule($id);
     }
 

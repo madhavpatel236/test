@@ -19,7 +19,7 @@
                         <!--end::Title-->
                         <!--begin::Link-->
                         <div class="text-gray-400 fw-bold fs-4">New Here?
-                            <a href="<?php print site_url('UserController/view'); ?>" class="link-primary fw-bolder">Create an Account</a>
+                            <a href="<?php print site_url('AuthController/register'); ?>" class="link-primary fw-bolder">Create an Account</a>
                         </div>
                         <!--end::Link-->
                     </div>

@@ -93,10 +93,7 @@ class UserModel extends CI_Model
             // $_SESSION['userEmailAlreadyPresent'] = false;
             $this->session->set_userdata('userEmailAlreadyPresent', false);
             $this->session->set_userdata('credential_error', 'Email already present, please use different once!!');
-            // $_SESSION['credential_error'] = "Email already present, please use different once!!";
-            // var_dump($_SESSION['credential_error']);
-            // exit;
-            redirect('UserController/view');
+            redirect('AuthController/register');
             // return ;
         }
         // var_dump($_SESSION['userEmailAlreadyPresent']); exit;
@@ -146,6 +143,7 @@ class UserModel extends CI_Model
 
     public function deleteRule($id)
     {
+        // var_dump($id); exit;
         $this->db->where(["Id" => $id]);
         $this->db->delete('rules');
     }

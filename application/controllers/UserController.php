@@ -30,34 +30,13 @@ class UserController extends CI_Controller
 
         // $this->session->set_userdata('currentUserEmailID', $this->email);
         // $this->session->set_userdata('userRole', 'admin');
-        $currentEmail = $this->session->userdata('currentUserEmailID');
-        $currentRole = $this->session->userdata('userRole');
 
-        isset($currentEmail) ? $userEmail = $currentEmail  : "";
-        isset($currentRole) ? $userRole = $currentRole  : "";
-
-        // var_dump($userRole); exit;
-        //  var_dump(isset($userEmail) && isset($userRole) && $userRole == 'user');
-        //  exit;
-
-        // if (isset($userEmail) && isset($userRole) &&  $userRole == 'admin') {
-        //     redirect('AdminController/adminView');
-        // } 
-        // elseif (isset($userEmail) && isset($userRole) &&  $userRole == 'user') {
-        //     redirect('UserController/userHome');
-        // }
-        // if ($userRole != "user") {
-        //     redirect('AuthController/view');
-        // }
-        // if ($userRole != "user") {
-        //     redirect('AuthController/view');
-        // }
     }
 
-    public function view()
-    {
-        $this->template->loadView('UserHome_template', ['Register']);
-    }
+    // public function view()
+    // {
+    //     $this->template->loadView('UserHome_template', ['Register']);
+    // }
 
     public function logout()
     {
@@ -78,18 +57,16 @@ class UserController extends CI_Controller
 
     public function userHome()
     {
-        // var_dump('sdc'); exit;
-        // You can pass additional view data here
-        // $viewData['name'] = "Madhav";
+        $currentEmail = $this->session->userdata('currentUserEmailID');
+        $currentRole = $this->session->userdata('userRole');
 
-        // Load 'UserHome' view into $body
-        // $body = $this->load->view('UserHome', $viewData );
-        // echo "<pre>";print_r($body);exit;
+        isset($currentEmail) ? $userEmail = $currentEmail  : "";
+        isset($currentRole) ? $userRole = $currentRole  : "";
 
-        // Pass $body into the layout/template view
-        // $Click = $this->input->post('#logout_btn');
-        // var_dump(isset($Click)); 
-        // $this->template->loadView('UserHome_template', 'Navbar');
+        if (is_null($userRole)) {
+            redirect('AuthController/view');
+        }
+
         $this->template->loadView('UserHome_template', ['Navbar', 'UserHome']);
 
         // $this->template->loadView('UserHome_template', 'UserHome');
@@ -138,10 +115,9 @@ class UserController extends CI_Controller
         if ($this->isValid == false) {
             // var_dump($this->role); exit;
             // $this->load->view('Register', $this->errors);
-            redirect('UserController/view');
+            // redirect('UserController/view');
+            redirect('AuthController/register');
         }
-
-
 
 
         $this->UserModel->registerUser($this->name, $this->email, $this->password, $this->role);
