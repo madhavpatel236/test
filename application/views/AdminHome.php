@@ -170,8 +170,6 @@
     showRulesTable()
     showRankTable();
     var count = 0;
-    var numberOfUserArray = [];
-    var pointsArray = [];
 
     // $(document).ready(function() {
 
@@ -215,8 +213,11 @@
     })
 
     $('.add_btn').click(function() {
+        var numberOfUserArray = [];
+        var pointsArray = [];
+
         // e.preventDefault();      
-        alert(count)  
+        // alert(count)
         for (let i = 0; i <= count; i++) {
             // let userNumber = $(`#user_number${i}`).val();
             // let addPoints = $(`#points${i}`).val();
@@ -244,14 +245,14 @@
                 points: pointsArray
             },
             success: function(response) {
-                // $('.model_box').hide();
                 // alert('fv'); debugger;
-                $(`#user_number0`).val("");
-                $(`#points0`).val("");
+                $(`.user_number0`).val("");
+                $(`.points0`).val("");
                 $('input').val('');
                 for (let i = 1; i <= count + 1; i++) {
                     // $(`#user_number${i}`).val("");
                     // $(`#points${i}`).val("");
+                    // $(`.plus_data_div${i}`).val("");
                     $(`.plus_data_div${i}`).remove();
                 }
                 showRulesTable();
