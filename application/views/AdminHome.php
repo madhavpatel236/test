@@ -34,7 +34,7 @@
                 <!--begin::Close-->
                 <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                    <span class="svg-icon svg-icon-1">
+                    <span id="cancel_btn" class="cancel_btn vg-icon svg-icon-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
                             <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
@@ -53,19 +53,19 @@
                     <div class="row mb-5">
                         <div class="col-md-5 fv-row">
                             <label class="required fs-5 fw-bold mb-2">Number of Players</label>
-                            <input name="user_number0" id="user_number0" type="number" min="0" class="form-control form-control-solid" placeholder="Enter No. of players" />
+                            <input name="user_number0" id="user_number0" type="number" min="0" class="user_number0 form-control form-control-solid" placeholder="Enter No. of players" />
                         </div>
                         <div class="col-md-5  fv-row">
                             <label class="required fs-5 fw-bold mb-2">Points</label>
-                            <input name="points0" id="points0" type="number" min="0" class="form-control form-control-solid" placeholder="Enter points" />
+                            <input name="points0" id="points0" type="number" min="0" class="points0 form-control form-control-solid" placeholder="Enter points" />
                         </div>
                         <input id="edit_id" type="hidden" />
                         <div class="col-md-2 fv-row">
                             <label class=" pt-15 fs-5 fw-bold mb-2"></label>
                             <button id="plus_btn" class="plus_btn btn btn-primary" name="plus_btn"> + </button>
                         </div>
-                        <div class="plus_data_div" id="plus_data_div" name="plus_data_div"></div>
                     </div>
+                    <div class="plus_data_div" id="plus_data_div" name="plus_data_div"></div>
                 </div>
                 <!--end::Scroll-->
             </div>
@@ -187,7 +187,6 @@
     $('#plus_btn').click(function() {
         count += 1;
         if (count >= 1) {
-
             var field = `
                     <div class="row added_row_div   mt-5 new_added_div${count}" id='${count}'>
                         <div class="col-md-5 fv-row">
@@ -201,23 +200,40 @@
                             <button onclick='removeFieldData(${count})'  class="remove_btn btn btn-primary" id = '${count}'> - </button>
                         </div> <br/> `;
             $('.plus_data_div').append(field)
+            // alert(count);
+            // debugger;
         };
     })
 
+    $('.cancel_btn').on('click', function() {
+        count = 0;
+        // alert(count); debugger;
+        // for (let i = 1; i <= count + 1; i++) {
+        //     $(`.plus_data_div${i}`).val("");
+        //     $(`.plus_data_div${i}`).remove();
+        // }
+    })
+
     $('.add_btn').click(function() {
-        // e.preventDefault();
+        // e.preventDefault();      
+        alert(count)  
         for (let i = 0; i <= count; i++) {
+            // let userNumber = $(`#user_number${i}`).val();
+            // let addPoints = $(`#points${i}`).val();
+            // userNumberArray[i] = userNumber;
+            // pointsArray[i] = addPoints;
+
+            // alert($(`#user_number${i}`).val()); debugger;
             var numberOfUser = $(`#user_number${i}`).val();
             var points = $(`#points${i}`).val();
-            // alert(numberOfUser == ''); debugger;
+            // alert(numberOfUser); debugger;
             if (!numberOfUser == '' && !points == '') {
                 numberOfUserArray[i] = numberOfUser;
                 pointsArray[i] = points;
-
-                $(`#user_number${i}`).text("");
-                $(`#points0${i}`).text("");
+                // $(`#user_number${i}`).text("");
             }
         }
+        count = 0;
 
         $.ajax({
             url: "<?php echo site_url('AdminController/addRules'); ?>",
@@ -228,10 +244,16 @@
                 points: pointsArray
             },
             success: function(response) {
-                // alert(response);
                 // $('.model_box').hide();
+                // alert('fv'); debugger;
                 $(`#user_number0`).val("");
                 $(`#points0`).val("");
+                $('input').val('');
+                for (let i = 1; i <= count + 1; i++) {
+                    // $(`#user_number${i}`).val("");
+                    // $(`#points${i}`).val("");
+                    $(`.plus_data_div${i}`).remove();
+                }
                 showRulesTable();
             },
         });
