@@ -29,7 +29,7 @@
             <!--begin::Modal header-->
             <div class="modal-header" id="kt_modal_new_address_header">
                 <!--begin::Modal title-->
-                <h2>Add New Rules</h2>
+                <h2>Rules</h2>
                 <!--end::Modal title-->
                 <!--begin::Close-->
                 <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -191,10 +191,10 @@
             var field = `
                     <div class="row added_row_div   mt-5 new_added_div${count}" id='${count}'>
                         <div class="col-md-5 fv-row">
-                            <input name="user_number0" id="user_number${count}" type="number" min="0" class="form-control form-control-solid" placeholder="Enter No. of players" />
+                            <input  id="user_number${count}" type="number" min="0" class="form-control form-control-solid" placeholder="Enter No. of players" />
                         </div>
                         <div class="col-md-5  fv-row">
-                            <input name="points0" id="points${count}" type="number" min="0" class="form-control form-control-solid" placeholder="Enter points" />
+                            <input  id="points${count}" type="number" min="0" class="form-control form-control-solid" placeholder="Enter points" />
                         </div>
                         <input class='field_id' id='${count}' hidden />
                         <div class="col-md-2 fv-row">
@@ -209,8 +209,14 @@
         for (let i = 0; i <= count; i++) {
             var numberOfUser = $(`#user_number${i}`).val();
             var points = $(`#points${i}`).val();
-            numberOfUserArray[i] = numberOfUser;
-            pointsArray[i] = points;
+            // alert(numberOfUser == ''); debugger;
+            if (!numberOfUser == '' && !points == '') {
+                numberOfUserArray[i] = numberOfUser;
+                pointsArray[i] = points;
+
+                $(`#user_number${i}`).text("");
+                $(`#points0${i}`).text("");
+            }
         }
 
         $.ajax({
@@ -224,7 +230,8 @@
             success: function(response) {
                 // alert(response);
                 // $('.model_box').hide();
-
+                $(`#user_number0`).val("");
+                $(`#points0`).val("");
                 showRulesTable();
             },
         });

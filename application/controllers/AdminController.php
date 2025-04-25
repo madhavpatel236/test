@@ -50,9 +50,11 @@ class AdminController extends CI_Controller
     {
         $numberOfUser = $this->input->post('numberOfUser');
         $points = $this->input->post('points');
-        $this->UserModel->addRules($numberOfUser, $points);
         // var_dump($points);
         // exit;
+        if(!is_null($numberOfUser) && !is_null($points)){
+            $this->UserModel->addRules($numberOfUser, $points);
+        }
     }
 
     public function showRulesTable()
